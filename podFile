@@ -1,0 +1,6 @@
+source ‘https://github.com/CocoaPods/Specs.git’
+platform :ios, ‘7.0’ #手机的系统
+#pod ‘AMap3DMap’ #3D地图sdk
+pod ‘AMap2DMap’ #2D地图sdk
+pod ‘AMapLocation’ #定位sdk
+pod ‘AFNetworking’ #网络包
