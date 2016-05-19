@@ -48,11 +48,20 @@
 -(void)viewDidAppear:(BOOL)animated{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSString *username = [userDefault objectForKey:@"username"];
+    NSString *hadjoin = [userDefault objectForKey:@"hadjoin"];
    
     
      if(username != nil){
-     NSLog(@"the username is %@",username);
-     [self performSegueWithIdentifier:@"HadLogin" sender:nil];
+        // [self performSegueWithIdentifier:@"HadLogin" sender:nil];
+     //NSLog(@"the username is %@",username);
+         
+         if ([hadjoin isEqualToString:@"yes"]) {
+             [self performSegueWithIdentifier:@"LoginAndJoin" sender:nil];
+         }
+         else {
+             [self performSegueWithIdentifier:@"HadLogin" sender:nil];
+         }
+         
      }
 	
 }

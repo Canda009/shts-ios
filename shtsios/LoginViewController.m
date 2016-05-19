@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import <AFHTTPSessionManager.h>
+#import "Constants.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *usernameInput;
@@ -77,9 +78,11 @@
     params[@"user.email"]=username;
     params[@"user.password"]=password;
     params[@"device"]=@"ios";
-    
+    NSString *action = @"/new-shts/login.do";
+    NSString *loginUrl = [SERVER_URL stringByAppendingString:action];
+    //NSLog(@"%@",loginUrl);
    // NSDictionary *loginDict = @{@"user.email":@"8888",@"user.password":@"8888",@"device":@"ios"};
-    [manager POST:@"http://192.168.1.111:8080/shts/login.do" parameters:params progress:^(NSProgress *progress){
+    [manager POST:loginUrl parameters:params progress:^(NSProgress *progress){
     
     } success:^(NSURLSessionDataTask *operation,id responseObject){
         NSLog(@"%@",responseObject);
@@ -88,6 +91,11 @@
         
         NSString *result = [responseObject objectForKey:@"result"];
         if([result isEqualToString:@"success"]){
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            
+            [userDefaults setObject:username forKey:@"username"];
+            [userDefaults setObject:password forKey:@"password"];
+            [userDefaults synchronize];
             [self performSegueWithIdentifier:@"LoginSuccess" sender:nil];
             
         }
@@ -99,7 +107,7 @@
             [userDefaults synchronize];
             
             
-            [self performSegueWithIdentifier:@"LoginSuccess" sender:nil];
+            [self performSegueWithIdentifier:@"HadJoin" sender:nil];
             
         }
         else{

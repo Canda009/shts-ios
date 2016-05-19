@@ -17,6 +17,7 @@
 		460E51121C7360A10085C91D /* shtsiosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 460E51111C7360A10085C91D /* shtsiosTests.m */; };
 		460E511D1C7360A10085C91D /* shtsiosUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 460E511C1C7360A10085C91D /* shtsiosUITests.m */; };
 		463CA9C11C772099003C9722 /* running.json in Resources */ = {isa = PBXBuildFile; fileRef = 463CA9C01C772099003C9722 /* running.json */; };
+		465956F21CEABAAC00AB3555 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 465956F11CEABAAC00AB3555 /* Constants.m */; };
 		467FC3601C7DD2F400698EE6 /* PlanTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 467FC35F1C7DD2F400698EE6 /* PlanTableViewController.m */; };
 		467FC3631C7DD8CC00698EE6 /* PlanItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 467FC3621C7DD8CC00698EE6 /* PlanItemCell.m */; };
 		467FC3671C7DE96700698EE6 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = 467FC3661C7DE96700698EE6 /* Plan.m */; };
@@ -64,6 +65,8 @@
 		460E511C1C7360A10085C91D /* shtsiosUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shtsiosUITests.m; sourceTree = "<group>"; };
 		460E511E1C7360A10085C91D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		463CA9C01C772099003C9722 /* running.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = running.json; sourceTree = "<group>"; };
+		465956F01CEABAAC00AB3555 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		465956F11CEABAAC00AB3555 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		467FC35E1C7DD2F400698EE6 /* PlanTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanTableViewController.h; sourceTree = "<group>"; };
 		467FC35F1C7DD2F400698EE6 /* PlanTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanTableViewController.m; sourceTree = "<group>"; };
 		467FC3611C7DD8CC00698EE6 /* PlanItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanItemCell.h; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 				46948E441C84420200F214D5 /* RecordTableViewController.m */,
 				46948E461C84440500F214D5 /* HomeNaviViewController.h */,
 				46948E471C84440500F214D5 /* HomeNaviViewController.m */,
+				465956F01CEABAAC00AB3555 /* Constants.h */,
+				465956F11CEABAAC00AB3555 /* Constants.m */,
 			);
 			path = shtsios;
 			sourceTree = "<group>";
@@ -428,6 +433,7 @@
 				460E50F91C7360A00085C91D /* main.m in Sources */,
 				46948E451C84420200F214D5 /* RecordTableViewController.m in Sources */,
 				46948E421C843D6A00F214D5 /* HomeViewController.m in Sources */,
+				465956F21CEABAAC00AB3555 /* Constants.m in Sources */,
 				46948E481C84440500F214D5 /* HomeNaviViewController.m in Sources */,
 				46A8D9161C79F9D7008E5C57 /* MainViewController.m in Sources */,
 				467FC3671C7DE96700698EE6 /* Plan.m in Sources */,

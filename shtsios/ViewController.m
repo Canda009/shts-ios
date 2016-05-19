@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import <MAMapKit/MAMapKit.h>
 #import <AFHTTPSessionManager.h>
+#import "Constants.h"
 
 #define APIKey @"f3e9fad54427756a8373a0795e81fd00"
 @interface ViewController ()<MAMapViewDelegate>
@@ -63,6 +64,9 @@
         NSString *currentLogitude = [NSString stringWithFormat:@"%f",userLocation.location.coordinate.longitude];
         NSString *speed = [NSString stringWithFormat:@"%f",userLocation.location.speed];
         NSString *accuracy = [NSString stringWithFormat:@"%f",userLocation.location.horizontalAccuracy];
+        NSString *bearing = [NSString stringWithFormat:@"%f",userLocation.location.course];
+        NSString *state = @"move";
+        NSString *altitude = [NSString stringWithFormat:@"%f",userLocation.location.altitude];
         NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
         NSString *username = [userDefault objectForKey:@"username"];
         
@@ -71,12 +75,16 @@
         params[@"userEmail"]=username;
         params[@"trace.currentLatitude"]=currentLatitude;
         params[@"trace.currentLogitude"]=currentLogitude;
+        params[@"trace.state"]=state;
+        params[@"trace.altitude"]=altitude;
         params[@"trace.speed"]=speed;
         params[@"trace.accuracy"]=accuracy;
-
+        params[@"trace.bearing"]=bearing;
+        NSString *action = @"/new-shts/trace.do?device=ios";
+        NSString *traceUrl = [SERVER_URL stringByAppendingString:action];
         
         // NSDictionary *loginDict = @{@"user.email":@"8888",@"user.password":@"8888",@"device":@"ios"};
-        [manager POST:@"http://192.168.1.111:8080/shts/trace.do" parameters:params progress:^(NSProgress *progress){
+        [manager POST:traceUrl parameters:params progress:^(NSProgress *progress){
             
         } success:^(NSURLSessionDataTask *operation,id responseObject){
             NSLog(@"%@",responseObject);

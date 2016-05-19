@@ -11,6 +11,7 @@
 #import "HomeNaviViewController.h"
 #import "HomeViewController.h"
 #import <AFHTTPSessionManager.h>
+#import "Constants.h"
 
 @interface PlanTableViewController ()<myTabVdelegate>
 {
@@ -23,13 +24,58 @@
 
 -(void)myTabVClick:(UITableViewCell *)cell{
     NSIndexPath *index = [self.tableView indexPathForCell:cell];
-    NSLog(@"the current cell == %ld",index.row);
+    //NSLog(@"the current cell == %ld",index.row);
+    NSDictionary *planDict = [plansArray objectAtIndex:index.row];
+    
+    NSString *joinPlanId = [planDict objectForKey:@"id"];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *username = [userDefault objectForKey:@"username"];
+    NSLog(@"%@",username);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+  
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"user_email"]=username;
+    params[@"plan_id"]=joinPlanId;
+    NSString *action = @"/new-shts/joinplan.do?device=ios";
+    NSString *joinplanUrl = [SERVER_URL stringByAppendingString:action];
+    
+    // NSDictionary *loginDict = @{@"user.email":@"8888",@"user.password":@"8888",@"device":@"ios"};
+    [manager POST:joinplanUrl parameters:params progress:^(NSProgress *progress){
+        
+    } success:^(NSURLSessionDataTask *operation,id responseObject){
+       // NSLog(@"%@",responseObject);
+        //NSLog(@"%@",[NSThread currentThread]);
+        
+        
+        NSString *result = [responseObject objectForKey:@"result"];
+        if([result isEqualToString:@"success"]){
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            NSString *hadjoin = @"yes";
+            
+            [userDefaults setObject:hadjoin forKey:@"hadjoin"];
+            
+            [userDefaults synchronize];
+            
+            [self performSegueWithIdentifier:@"JoinPlan" sender:nil];
+            
+        }
+       
+        else{
+            NSLog(@"join failed");
+            //login failed  do  nothing;
+        }
+        
+    } failure:^(NSURLSessionDataTask *operation,NSError *error){
+        NSLog(@"%@",error);
+    }];
+
     /*
     HomeViewController *homeViewController = [[HomeViewController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
 
     [self presentViewController:navigationController animated:YES completion:^{}];*/
-    [self performSegueWithIdentifier:@"JoinPlan" sender:nil];
+    
 }
 
 - (void)viewDidLoad {
@@ -44,11 +90,12 @@
         NSLog(@"the username is %@",username);
        
     
-
+    NSString *action = @"/new-shts/plan.do?action=ios";
+    NSString *planUrl = [SERVER_URL stringByAppendingString:action];
  
     
     
-    [manager POST:@"http://192.168.1.111:8080/shts/plan.do?action=ios" parameters:nil progress:^(NSProgress *progress){
+    [manager POST:planUrl parameters:nil progress:^(NSProgress *progress){
         
     } success:^(NSURLSessionDataTask *operation,id responseObject){
        // NSLog(@"responseObject%@",responseObject);
