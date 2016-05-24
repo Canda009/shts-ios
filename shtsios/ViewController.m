@@ -10,6 +10,7 @@
 #import <MAMapKit/MAMapKit.h>
 #import <AFHTTPSessionManager.h>
 #import "Constants.h"
+#import "TraceDao.h"
 
 #define APIKey @"f3e9fad54427756a8373a0795e81fd00"
 @interface ViewController ()<MAMapViewDelegate>
@@ -70,6 +71,32 @@
         NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
         NSString *username = [userDefault objectForKey:@"username"];
         
+        Trace *trace = [[Trace alloc] initWithUser:username latitude:[NSNumber numberWithDouble:userLocation.location.coordinate.latitude] longitude:[NSNumber numberWithDouble:userLocation.location.coordinate.longitude] tracetime:userLocation.location.timestamp accuracy:[NSNumber numberWithDouble: userLocation.location.horizontalAccuracy] speed:[NSNumber numberWithDouble:userLocation.location.speed] altitude:[NSNumber numberWithDouble:userLocation.location.altitude] bearing:[NSNumber numberWithDouble:userLocation.location.course] state:@"move"];
+        TraceDAO *dao = [TraceDAO sharedManager];
+        [dao create:trace];
+        
+        
+        //NSDate *nowDate = [self getCustomDateWithHour:0];
+        //NSDate *nextDate = [self getCustomDateWithHour:24];
+        
+        //NSTimeInterval time = [nowDate timeIntervalSince1970];
+        //long long timeMills = [[NSNumber numberWithDouble:time] longLongValue];
+        //timeMills = timeMills-8*60*60;
+        //timeMills = (timeMills - timeMills%(24*60*60))+8*60*60;
+        //NSString *timeString = [NSString stringWithFormat:@"%llu",timeMills];
+        //NSLog(@"time-%@",timeString);
+        
+        /*
+        NSMutableArray *all =  [dao findByStartDate:nowDate endDate:nextDate];
+        for (int i=0; i< [all count]; i++) {
+            Trace *myTrace = all[i];
+            NSDate *mydate = myTrace.tracetime;
+            NSTimeInterval time = [mydate timeIntervalSince1970];
+            long long timeMills = [[NSNumber numberWithDouble:time] longLongValue];
+            NSString *timeString = [NSString stringWithFormat:@"%llu",timeMills];
+            //NSLog(@"time-%@",timeString);
+            NSLog(@"%@,%@,%@,%@",myTrace.latitude,myTrace.longitude,myTrace.tracetime,timeString);
+        }*/
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         params[@"userEmail"]=username;
@@ -186,6 +213,28 @@
     _polyline = [MAMultiPolyline polylineWithCoordinates:_runningCoords count:_count drawStyleIndexes:indexes];
     */
     
+}
+
+- (NSDate *)getCustomDateWithHour:(NSInteger)hour
+{
+    //获取当前时间
+    NSDate *currentDate = [NSDate date];
+    NSCalendar *currentCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *currentComps = [[NSDateComponents alloc] init];
+    
+    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    
+    currentComps = [currentCalendar components:unitFlags fromDate:currentDate];
+    
+    //设置当天的某个点
+    NSDateComponents *resultComps = [[NSDateComponents alloc] init];
+    [resultComps setYear:[currentComps year]];
+    [resultComps setMonth:[currentComps month]];
+    [resultComps setDay:[currentComps day]];
+    [resultComps setHour:hour];
+    
+    NSCalendar *resultCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    return [resultCalendar dateFromComponents:resultComps];
 }
 -(void)viewDidAppear:(BOOL)animated{
     [self initData];

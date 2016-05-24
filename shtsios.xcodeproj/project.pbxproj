@@ -26,6 +26,17 @@
 		46948E451C84420200F214D5 /* RecordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46948E441C84420200F214D5 /* RecordTableViewController.m */; };
 		46948E481C84440500F214D5 /* HomeNaviViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46948E471C84440500F214D5 /* HomeNaviViewController.m */; };
 		46948E4F1C8481E800F214D5 /* PlistDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 46948E4E1C8481E800F214D5 /* PlistDao.m */; };
+		469753FA1CF33D37003670AD /* CoreDataTrace.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 469753F81CF33D37003670AD /* CoreDataTrace.xcdatamodeld */; };
+		469753FF1CF341D9003670AD /* TraceManagedObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 469753FC1CF341D9003670AD /* TraceManagedObject+CoreDataProperties.m */; };
+		469754001CF341D9003670AD /* TraceManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 469753FE1CF341D9003670AD /* TraceManagedObject.m */; };
+		469754031CF342B5003670AD /* CoreDataDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 469754021CF342B5003670AD /* CoreDataDao.m */; };
+		469754061CF3441F003670AD /* TraceDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 469754051CF3441F003670AD /* TraceDao.m */; };
+		469754091CF34457003670AD /* Trace.m in Sources */ = {isa = PBXBuildFile; fileRef = 469754081CF34457003670AD /* Trace.m */; };
+		4697540E1CF45BB1003670AD /* RecordManagedObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4697540B1CF45BB1003670AD /* RecordManagedObject+CoreDataProperties.m */; };
+		4697540F1CF45BB1003670AD /* RecordManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4697540D1CF45BB1003670AD /* RecordManagedObject.m */; };
+		469754121CF45C11003670AD /* RecordDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 469754111CF45C11003670AD /* RecordDao.m */; };
+		469754151CF45C45003670AD /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 469754141CF45C45003670AD /* Record.m */; };
+		469754181CF46EE9003670AD /* RecordItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 469754171CF46EE9003670AD /* RecordItemCell.m */; };
 		46A8D9161C79F9D7008E5C57 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A8D9151C79F9D7008E5C57 /* MainViewController.m */; };
 		46B6514C1C7AFD3700D4267A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B6514B1C7AFD3700D4267A /* LoginViewController.m */; };
 /* End PBXBuildFile section */
@@ -83,6 +94,27 @@
 		46948E471C84440500F214D5 /* HomeNaviViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNaviViewController.m; sourceTree = "<group>"; };
 		46948E4D1C8481E800F214D5 /* PlistDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlistDao.h; sourceTree = "<group>"; };
 		46948E4E1C8481E800F214D5 /* PlistDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlistDao.m; sourceTree = "<group>"; };
+		469753F91CF33D37003670AD /* CoreDataTrace.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTrace.xcdatamodel; sourceTree = "<group>"; };
+		469753FB1CF341D9003670AD /* TraceManagedObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TraceManagedObject+CoreDataProperties.h"; sourceTree = "<group>"; };
+		469753FC1CF341D9003670AD /* TraceManagedObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TraceManagedObject+CoreDataProperties.m"; sourceTree = "<group>"; };
+		469753FD1CF341D9003670AD /* TraceManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TraceManagedObject.h; sourceTree = "<group>"; };
+		469753FE1CF341D9003670AD /* TraceManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TraceManagedObject.m; sourceTree = "<group>"; };
+		469754011CF342B5003670AD /* CoreDataDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataDao.h; sourceTree = "<group>"; };
+		469754021CF342B5003670AD /* CoreDataDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataDao.m; sourceTree = "<group>"; };
+		469754041CF3441F003670AD /* TraceDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TraceDao.h; sourceTree = "<group>"; };
+		469754051CF3441F003670AD /* TraceDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TraceDao.m; sourceTree = "<group>"; };
+		469754071CF34457003670AD /* Trace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trace.h; sourceTree = "<group>"; };
+		469754081CF34457003670AD /* Trace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trace.m; sourceTree = "<group>"; };
+		4697540A1CF45BB1003670AD /* RecordManagedObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RecordManagedObject+CoreDataProperties.h"; sourceTree = "<group>"; };
+		4697540B1CF45BB1003670AD /* RecordManagedObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RecordManagedObject+CoreDataProperties.m"; sourceTree = "<group>"; };
+		4697540C1CF45BB1003670AD /* RecordManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordManagedObject.h; sourceTree = "<group>"; };
+		4697540D1CF45BB1003670AD /* RecordManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordManagedObject.m; sourceTree = "<group>"; };
+		469754101CF45C11003670AD /* RecordDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordDao.h; sourceTree = "<group>"; };
+		469754111CF45C11003670AD /* RecordDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordDao.m; sourceTree = "<group>"; };
+		469754131CF45C45003670AD /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
+		469754141CF45C45003670AD /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
+		469754161CF46EE9003670AD /* RecordItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordItemCell.h; sourceTree = "<group>"; };
+		469754171CF46EE9003670AD /* RecordItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordItemCell.m; sourceTree = "<group>"; };
 		46A8D9141C79F9D7008E5C57 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		46A8D9151C79F9D7008E5C57 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		46B6514A1C7AFD3700D4267A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -160,6 +192,7 @@
 		460E50F61C7360A00085C91D /* shtsios */ = {
 			isa = PBXGroup;
 			children = (
+				469753F71CF33C9E003670AD /* CoreData */,
 				46948E491C847F8F00F214D5 /* Dao */,
 				467FC3641C7DE8B100698EE6 /* models */,
 				460E50FA1C7360A00085C91D /* AppDelegate.h */,
@@ -190,6 +223,8 @@
 				46948E471C84440500F214D5 /* HomeNaviViewController.m */,
 				465956F01CEABAAC00AB3555 /* Constants.h */,
 				465956F11CEABAAC00AB3555 /* Constants.m */,
+				469754161CF46EE9003670AD /* RecordItemCell.h */,
+				469754171CF46EE9003670AD /* RecordItemCell.m */,
 			);
 			path = shtsios;
 			sourceTree = "<group>";
@@ -225,6 +260,10 @@
 			children = (
 				467FC3651C7DE96700698EE6 /* Plan.h */,
 				467FC3661C7DE96700698EE6 /* Plan.m */,
+				469754071CF34457003670AD /* Trace.h */,
+				469754081CF34457003670AD /* Trace.m */,
+				469754131CF45C45003670AD /* Record.h */,
+				469754141CF45C45003670AD /* Record.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -234,8 +273,30 @@
 			children = (
 				46948E4D1C8481E800F214D5 /* PlistDao.h */,
 				46948E4E1C8481E800F214D5 /* PlistDao.m */,
+				469754041CF3441F003670AD /* TraceDao.h */,
+				469754051CF3441F003670AD /* TraceDao.m */,
+				469754101CF45C11003670AD /* RecordDao.h */,
+				469754111CF45C11003670AD /* RecordDao.m */,
 			);
 			name = Dao;
+			sourceTree = "<group>";
+		};
+		469753F71CF33C9E003670AD /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				469753F81CF33D37003670AD /* CoreDataTrace.xcdatamodeld */,
+				469753FB1CF341D9003670AD /* TraceManagedObject+CoreDataProperties.h */,
+				469753FC1CF341D9003670AD /* TraceManagedObject+CoreDataProperties.m */,
+				469753FD1CF341D9003670AD /* TraceManagedObject.h */,
+				469753FE1CF341D9003670AD /* TraceManagedObject.m */,
+				469754011CF342B5003670AD /* CoreDataDao.h */,
+				469754021CF342B5003670AD /* CoreDataDao.m */,
+				4697540A1CF45BB1003670AD /* RecordManagedObject+CoreDataProperties.h */,
+				4697540B1CF45BB1003670AD /* RecordManagedObject+CoreDataProperties.m */,
+				4697540C1CF45BB1003670AD /* RecordManagedObject.h */,
+				4697540D1CF45BB1003670AD /* RecordManagedObject.m */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,20 +489,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				469753FF1CF341D9003670AD /* TraceManagedObject+CoreDataProperties.m in Sources */,
 				460E50FF1C7360A00085C91D /* ViewController.m in Sources */,
 				460E50FC1C7360A00085C91D /* AppDelegate.m in Sources */,
 				460E50F91C7360A00085C91D /* main.m in Sources */,
 				46948E451C84420200F214D5 /* RecordTableViewController.m in Sources */,
 				46948E421C843D6A00F214D5 /* HomeViewController.m in Sources */,
 				465956F21CEABAAC00AB3555 /* Constants.m in Sources */,
+				469754031CF342B5003670AD /* CoreDataDao.m in Sources */,
 				46948E481C84440500F214D5 /* HomeNaviViewController.m in Sources */,
+				469754001CF341D9003670AD /* TraceManagedObject.m in Sources */,
+				469754151CF45C45003670AD /* Record.m in Sources */,
+				4697540E1CF45BB1003670AD /* RecordManagedObject+CoreDataProperties.m in Sources */,
 				46A8D9161C79F9D7008E5C57 /* MainViewController.m in Sources */,
 				467FC3671C7DE96700698EE6 /* Plan.m in Sources */,
+				469754121CF45C11003670AD /* RecordDao.m in Sources */,
 				46948E4F1C8481E800F214D5 /* PlistDao.m in Sources */,
 				467FC3601C7DD2F400698EE6 /* PlanTableViewController.m in Sources */,
 				46B6514C1C7AFD3700D4267A /* LoginViewController.m in Sources */,
 				467FC3631C7DD8CC00698EE6 /* PlanItemCell.m in Sources */,
+				469754061CF3441F003670AD /* TraceDao.m in Sources */,
+				469754091CF34457003670AD /* Trace.m in Sources */,
 				46948E3F1C843AAB00F214D5 /* SettingViewController.m in Sources */,
+				469754181CF46EE9003670AD /* RecordItemCell.m in Sources */,
+				469753FA1CF33D37003670AD /* CoreDataTrace.xcdatamodeld in Sources */,
+				4697540F1CF45BB1003670AD /* RecordManagedObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,6 +760,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		469753F81CF33D37003670AD /* CoreDataTrace.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				469753F91CF33D37003670AD /* CoreDataTrace.xcdatamodel */,
+			);
+			currentVersion = 469753F91CF33D37003670AD /* CoreDataTrace.xcdatamodel */;
+			path = CoreDataTrace.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 460E50EC1C7360A00085C91D /* Project object */;
 }

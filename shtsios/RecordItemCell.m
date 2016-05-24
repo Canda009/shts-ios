@@ -1,14 +1,14 @@
 //
-//  PlanItemCell.m
+//  RecordItemCell.m
 //  shtsios
 //
-//  Created by cdj on 16/2/24.
+//  Created by cdj on 16/5/24.
 //  Copyright © 2016年 itiis. All rights reserved.
 //
 
-#import "PlanItemCell.h"
+#import "RecordItemCell.h"
 
-@implementation PlanItemCell
+@implementation RecordItemCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -20,8 +20,7 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)joinAction:(id)sender {
-    
+- (IBAction)detailView:(id)sender {
     [self.delegate myTabVClick:self];
 }
 

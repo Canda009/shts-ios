@@ -15,7 +15,7 @@
 
 @interface PlanTableViewController ()<myTabVdelegate>
 {
-    NSMutableArray *plansArray;
+    NSMutableArray *plansArray ;
 }
 
 @end

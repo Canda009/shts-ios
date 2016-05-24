@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *startendLabel;
 @property (weak, nonatomic) IBOutlet UILabel *areaLabel;
 @property (weak, nonatomic) IBOutlet UIButton *joinButton;
+
 - (IBAction)joinAction:(id)sender;
 
 @end
