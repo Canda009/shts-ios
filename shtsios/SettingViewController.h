@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingViewController : UITableViewController
+- (IBAction)logoutAction:(id)sender;
 
 @end

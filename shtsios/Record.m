@@ -21,7 +21,8 @@
         self.recordstarttime = starttime;
         self.pointnum = pointnum;
         self.stopnum = stopnum;
-        
+        self.avgsped = [NSNumber numberWithInt:0];
+        self.distance = [NSNumber numberWithInt:0];
     }
     
     return self;

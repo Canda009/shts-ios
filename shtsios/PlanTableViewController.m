@@ -30,7 +30,7 @@
     NSString *joinPlanId = [planDict objectForKey:@"id"];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSString *username = [userDefault objectForKey:@"username"];
-    NSLog(@"%@",username);
+    //NSLog(@"%@",username);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
   
@@ -50,24 +50,19 @@
         
         NSString *result = [responseObject objectForKey:@"result"];
         if([result isEqualToString:@"success"]){
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            NSString *hadjoin = @"yes";
             
-            [userDefaults setObject:hadjoin forKey:@"hadjoin"];
-            
-            [userDefaults synchronize];
             
             [self performSegueWithIdentifier:@"JoinPlan" sender:nil];
             
         }
        
         else{
-            NSLog(@"join failed");
+            //NSLog(@"join failed");
             //login failed  do  nothing;
         }
         
     } failure:^(NSURLSessionDataTask *operation,NSError *error){
-        NSLog(@"%@",error);
+        //NSLog(@"%@",error);
     }];
 
     /*
@@ -87,7 +82,7 @@
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSString *username = [userDefault objectForKey:@"username"];
     
-        NSLog(@"the username is %@",username);
+        //NSLog(@"the username is %@",username);
        
     
     NSString *action = @"/new-shts/plan.do?action=ios";
@@ -112,7 +107,7 @@
         }*/
     
     } failure:^(NSURLSessionDataTask *operation,NSError *error){
-        NSLog(@"%@",error);
+        //NSLog(@"%@",error);
     }];
     
     

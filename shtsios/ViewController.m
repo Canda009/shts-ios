@@ -11,8 +11,9 @@
 #import <AFHTTPSessionManager.h>
 #import "Constants.h"
 #import "TraceDao.h"
+#import "RecordDao.h"
 
-#define APIKey @"f3e9fad54427756a8373a0795e81fd00"
+
 @interface ViewController ()<MAMapViewDelegate>
 {
     MAMapView *_mapView;
@@ -28,14 +29,14 @@
 @implementation ViewController
 
 - (void)initMapView{
-    [MAMapServices sharedServices].apiKey = APIKey;
+    [MAMapServices sharedServices].apiKey = IOS_KEY;
     _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
     _mapView.delegate = self;
     _mapView.compassOrigin = CGPointMake(_mapView.compassOrigin.x, 22);
     _mapView.scaleOrigin = CGPointMake(_mapView.scaleOrigin.x, 22);
     
     [self.view addSubview:_mapView];
-    NSLog(@"it's initMapView()");
+    //NSLog(@"it's initMapView()");
     
     
 }
@@ -51,7 +52,7 @@
     if(_mapView.userTrackingMode != MAUserTrackingModeFollow){
         [_mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
     }
-    NSLog(@"it's viewDidLoad()");
+    //NSLog(@"it's viewDidLoad()");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,6 +75,26 @@
         Trace *trace = [[Trace alloc] initWithUser:username latitude:[NSNumber numberWithDouble:userLocation.location.coordinate.latitude] longitude:[NSNumber numberWithDouble:userLocation.location.coordinate.longitude] tracetime:userLocation.location.timestamp accuracy:[NSNumber numberWithDouble: userLocation.location.horizontalAccuracy] speed:[NSNumber numberWithDouble:userLocation.location.speed] altitude:[NSNumber numberWithDouble:userLocation.location.altitude] bearing:[NSNumber numberWithDouble:userLocation.location.course] state:@"move"];
         TraceDAO *dao = [TraceDAO sharedManager];
         [dao create:trace];
+       
+        
+        //处理record
+        NSDate *nowDate = [NSDate date];
+        NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
+        [dateformatter setDateFormat:@"yyyyMMdd"];
+        NSString * dateStr=[dateformatter stringFromDate:nowDate];
+        
+        RecordDAO *recordDao = [RecordDAO sharedManager];
+        if([recordDao findByDateString:dateStr]){
+            Record *record = [[Record alloc] init];
+            record.datestring = dateStr;
+            record.recordendtime = userLocation.location.timestamp;
+            [recordDao modify:record];
+        }
+        else{
+         Record  *record = [[Record alloc] initWithUser:username datestring:dateStr startlatitude:[NSNumber numberWithDouble:userLocation.location.coordinate.latitude] startlongitude:[NSNumber numberWithDouble: userLocation.location.coordinate.longitude] recordstarttime:userLocation.location.timestamp pointnum:[NSNumber numberWithInt:1] stopnum:[NSNumber numberWithInt:1]];
+            [recordDao create:record];
+        }
+
         
         
         //NSDate *nowDate = [self getCustomDateWithHour:0];
@@ -114,7 +135,7 @@
         [manager POST:traceUrl parameters:params progress:^(NSProgress *progress){
             
         } success:^(NSURLSessionDataTask *operation,id responseObject){
-            NSLog(@"%@",responseObject);
+            //NSLog(@"%@",responseObject);
             //NSLog(@"%@",[NSThread currentThread]);
             
             /*
@@ -140,7 +161,7 @@
             }
             */
         } failure:^(NSURLSessionDataTask *operation,NSError *error){
-            NSLog(@"%@",error);
+            //NSLog(@"%@",error);
         }];
         
         [_pointList addObject:userLocation.location];
@@ -174,7 +195,7 @@
         
         return polylineRenderer;
     }
-    NSLog(@"it's rendererForOverlay()");
+    //NSLog(@"it's rendererForOverlay()");
     return nil;
 }
 -(UIColor *)getColorForSpeed:(float)speed{
@@ -239,7 +260,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     [self initData];
     //[_mapView addOverlay:_polyline];
-    NSLog(@"it's viewDidAppear()");
+    //NSLog(@"it's viewDidAppear()");
 }
 
 -(void)dealloc{

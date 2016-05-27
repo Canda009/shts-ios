@@ -21,6 +21,8 @@
 @implementation RecordTableViewController
 
 -(void)myTabVClick:(UITableViewCell *)cell{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"功能暂未开放" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
     /*
     NSIndexPath *index = [self.tableView indexPathForCell:cell];
     //NSLog(@"the current cell == %ld",index.row);
@@ -81,6 +83,7 @@
 - (void)viewDidLoad {
     recordsArray = [[NSMutableArray alloc]init];
     [super viewDidLoad];
+    /*
     NSDate *nowDate = [NSDate date];
     NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
     [dateformatter setDateFormat:@"yyyyMMdd"];
@@ -88,8 +91,9 @@
     NSString * dateStr=[dateformatter stringFromDate:nowDate];
     
     Record  *record = [[Record alloc] initWithUser:@"20160516" datestring:dateStr startlatitude:[NSNumber numberWithDouble:30.1111] startlongitude:[NSNumber numberWithDouble: 114.11] recordstarttime:[NSDate date] pointnum:[NSNumber numberWithInt:1] stopnum:[NSNumber numberWithInt:1]];
+     */
     RecordDAO *dao = [RecordDAO sharedManager];
-    [dao create:record];
+    //[dao create:record];
     
     
     NSMutableArray *all =  [dao findAll];
@@ -97,13 +101,13 @@
         Record *myRecord = all[i];
         
         //NSLog(@"time-%@",timeString);
-        NSLog(@"修改前%@,%@,%@,%@,%@",myRecord.startlatitude,myRecord.startlongitude,myRecord.recordstarttime,myRecord.stopnum,myRecord.datestring);
+        //NSLog(@"修改前%@,%@,%@,%@,%@",myRecord.startlatitude,myRecord.startlongitude,myRecord.recordstarttime,myRecord.stopnum,myRecord.datestring);
         [recordsArray addObject:myRecord];
     }
     [self.tableView reloadData];
     NSNumber *countNumber = [NSNumber numberWithUnsignedInteger:[recordsArray count]];
     
-    NSLog(@"the count is %@",[countNumber stringValue]);
+    //NSLog(@"the count is %@",[countNumber stringValue]);
     /*
     Record *record01 = [[Record alloc]init];
     record01.datestring = dateStr;
@@ -150,15 +154,15 @@
     
     NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
     [dateformatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    [dateformatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+    //[dateformatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
     NSString * starttimestring =[dateformatter stringFromDate:record.recordstarttime];
     NSString * endtimestring =[dateformatter stringFromDate:record.recordendtime];
-    
+    //NSLog(@"endtime:%@",endtimestring);
     cell.starttime.text = starttimestring;
     cell.endtime.text = endtimestring;
-    cell.distance.text = record.distance.description;
-    cell.avgspeed.text = record.avgsped.description;
-    cell.stopnum.text = record.stopnum.description;
+    cell.distance.text =[NSString stringWithFormat:@"里程:%@",record.distance.description];
+    cell.avgspeed.text = [NSString stringWithFormat:@"平均速度:%@",record.avgsped.description];
+    cell.stopnum.text = [NSString stringWithFormat:@"停留点数:%@",record.stopnum.description];
     
     [cell.detailButton.layer setCornerRadius:6];
     

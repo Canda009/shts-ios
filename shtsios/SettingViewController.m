@@ -34,4 +34,16 @@
 }
 */
 
+- (IBAction)logoutAction:(id)sender {
+    /*NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [userDefaults setObject:nil forKey:@"username"];
+    [userDefaults setObject:nil forKey:@"password"];
+    [userDefaults setObject:nil forKey:@"hadjoin"];
+    [userDefaults synchronize];
+    [self performSegueWithIdentifier:@"Logout" sender:nil];*/
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"功能暂未开放" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
+}
 @end

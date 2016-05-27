@@ -47,7 +47,7 @@ static TraceDAO *sharedManager = nil;
     
     NSError *error = nil;
     if ([cxt hasChanges] && ![cxt save:&error]){
-        NSLog(@"插入数据失败:%@, %@", error, [error userInfo]);
+        //NSLog(@"插入数据失败:%@, %@", error, [error userInfo]);
         return -1;
     }
     return 0;

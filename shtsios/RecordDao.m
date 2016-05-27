@@ -38,12 +38,15 @@ static RecordDAO *sharedManager = nil;
     [record setValue: model.recordstarttime forKey:@"recordstarttime"];
     [record setValue: model.pointnum forKey:@"pointnum"];
     [record setValue: model.stopnum forKey:@"stopnum"];
+    [record setValue: model.avgsped forKey:@"avgsped"];
+    [record setValue: model.distance forKey:@"distance"];
+    
     
   
     
     NSError *error = nil;
     if ([cxt hasChanges] && ![cxt save:&error]){
-        NSLog(@"插入数据失败:%@, %@", error, [error userInfo]);
+        //NSLog(@"插入数据失败:%@, %@", error, [error userInfo]);
         return -1;
     }
     return 0;
@@ -70,12 +73,12 @@ static RecordDAO *sharedManager = nil;
     if ([listData count] > 0) {
        
         RecordManagedObject *record = [listData lastObject];
-        //NSLog(@"查询到数据:%@, %@", record.stopnum, model.stopnum);
-        record.stopnum = model.stopnum;
+        //NSLog(@"查询到数据:%@, %@", record.recordendtime, model.recordendtime);
+        record.recordendtime = model.recordendtime;
         
         error = nil;
         if ([cxt hasChanges] && ![cxt save:&error]){
-            NSLog(@"修改数据失败:%@, %@", error, [error userInfo]);
+            //NSLog(@"修改数据失败:%@, %@", error, [error userInfo]);
             return -1;
         }
     }
@@ -104,6 +107,9 @@ static RecordDAO *sharedManager = nil;
     
     for (RecordManagedObject *mo in listData) {
         Record *record = [[Record alloc] initWithUser:mo.user datestring:mo.datestring startlatitude:mo.startlatitude startlongitude:mo.startlongitude recordstarttime:mo.recordstarttime pointnum:mo.pointnum stopnum:mo.stopnum];
+        record.recordendtime = mo.recordendtime;
+        record.avgsped = mo.avgsped;
+        record.distance = mo.distance;
         [resListData addObject:record];
     }
     
@@ -112,32 +118,28 @@ static RecordDAO *sharedManager = nil;
 
 
 //按照主键查询数据方法
-/*
--(NSMutableArray*) findByStartDate:(NSDate*)startDate endDate:(NSDate *)endDate
+
+-(BOOL) findByDateString:(NSString*)dateString
 {
     NSManagedObjectContext *cxt = [self managedObjectContext];
     
     NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"Trace" inManagedObjectContext:cxt];
+                                   entityForName:@"Record" inManagedObjectContext:cxt];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     fetchRequest.entity = entity;
     
-    fetchRequest.predicate = [NSPredicate predicateWithFormat: @"tracetime >= %@ AND tracetime <= %@",startDate,endDate];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat: @"datestring = %@",dateString];
     
     NSError *error = nil;
     NSArray *listData = [cxt executeFetchRequest:fetchRequest error:&error];
     
-    NSMutableArray *resListData = [[NSMutableArray alloc] init];
-    
-    for (TraceManagedObject *mo in listData) {
-        Trace *trace = [[Trace alloc] initWithRecord:mo.Record latitude:mo.latitude longitude:mo.longitude tracetime:mo.tracetime accuracy:mo.accuracy speed:mo.speed altitude:mo.altitude bearing:mo.bearing state:mo.state];
-        [resListData addObject:trace];
+    if ([listData count] > 0) {
+        return true;
     }
-    
-    return resListData;
+    else return false;
 }
-*/
+
 
 @end

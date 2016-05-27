@@ -21,11 +21,11 @@
 		467FC3601C7DD2F400698EE6 /* PlanTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 467FC35F1C7DD2F400698EE6 /* PlanTableViewController.m */; };
 		467FC3631C7DD8CC00698EE6 /* PlanItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 467FC3621C7DD8CC00698EE6 /* PlanItemCell.m */; };
 		467FC3671C7DE96700698EE6 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = 467FC3661C7DE96700698EE6 /* Plan.m */; };
+		468894461CF59E18002900D4 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 468894451CF59E18002900D4 /* HistoryViewController.m */; };
 		46948E3F1C843AAB00F214D5 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46948E3E1C843AAB00F214D5 /* SettingViewController.m */; };
 		46948E421C843D6A00F214D5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46948E411C843D6A00F214D5 /* HomeViewController.m */; };
 		46948E451C84420200F214D5 /* RecordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46948E441C84420200F214D5 /* RecordTableViewController.m */; };
 		46948E481C84440500F214D5 /* HomeNaviViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46948E471C84440500F214D5 /* HomeNaviViewController.m */; };
-		46948E4F1C8481E800F214D5 /* PlistDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 46948E4E1C8481E800F214D5 /* PlistDao.m */; };
 		469753FA1CF33D37003670AD /* CoreDataTrace.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 469753F81CF33D37003670AD /* CoreDataTrace.xcdatamodeld */; };
 		469753FF1CF341D9003670AD /* TraceManagedObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 469753FC1CF341D9003670AD /* TraceManagedObject+CoreDataProperties.m */; };
 		469754001CF341D9003670AD /* TraceManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 469753FE1CF341D9003670AD /* TraceManagedObject.m */; };
@@ -84,6 +84,8 @@
 		467FC3621C7DD8CC00698EE6 /* PlanItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanItemCell.m; sourceTree = "<group>"; };
 		467FC3651C7DE96700698EE6 /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
 		467FC3661C7DE96700698EE6 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
+		468894441CF59E18002900D4 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		468894451CF59E18002900D4 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		46948E3D1C843AAB00F214D5 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		46948E3E1C843AAB00F214D5 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		46948E401C843D6A00F214D5 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -92,8 +94,6 @@
 		46948E441C84420200F214D5 /* RecordTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordTableViewController.m; sourceTree = "<group>"; };
 		46948E461C84440500F214D5 /* HomeNaviViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeNaviViewController.h; sourceTree = "<group>"; };
 		46948E471C84440500F214D5 /* HomeNaviViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNaviViewController.m; sourceTree = "<group>"; };
-		46948E4D1C8481E800F214D5 /* PlistDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlistDao.h; sourceTree = "<group>"; };
-		46948E4E1C8481E800F214D5 /* PlistDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlistDao.m; sourceTree = "<group>"; };
 		469753F91CF33D37003670AD /* CoreDataTrace.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTrace.xcdatamodel; sourceTree = "<group>"; };
 		469753FB1CF341D9003670AD /* TraceManagedObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TraceManagedObject+CoreDataProperties.h"; sourceTree = "<group>"; };
 		469753FC1CF341D9003670AD /* TraceManagedObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TraceManagedObject+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -225,6 +225,8 @@
 				465956F11CEABAAC00AB3555 /* Constants.m */,
 				469754161CF46EE9003670AD /* RecordItemCell.h */,
 				469754171CF46EE9003670AD /* RecordItemCell.m */,
+				468894441CF59E18002900D4 /* HistoryViewController.h */,
+				468894451CF59E18002900D4 /* HistoryViewController.m */,
 			);
 			path = shtsios;
 			sourceTree = "<group>";
@@ -271,8 +273,6 @@
 		46948E491C847F8F00F214D5 /* Dao */ = {
 			isa = PBXGroup;
 			children = (
-				46948E4D1C8481E800F214D5 /* PlistDao.h */,
-				46948E4E1C8481E800F214D5 /* PlistDao.m */,
 				469754041CF3441F003670AD /* TraceDao.h */,
 				469754051CF3441F003670AD /* TraceDao.m */,
 				469754101CF45C11003670AD /* RecordDao.h */,
@@ -369,7 +369,7 @@
 				TargetAttributes = {
 					460E50F31C7360A00085C91D = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 9YM49ERZ5C;
+						DevelopmentTeam = 695STD6YP8;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -504,10 +504,10 @@
 				46A8D9161C79F9D7008E5C57 /* MainViewController.m in Sources */,
 				467FC3671C7DE96700698EE6 /* Plan.m in Sources */,
 				469754121CF45C11003670AD /* RecordDao.m in Sources */,
-				46948E4F1C8481E800F214D5 /* PlistDao.m in Sources */,
 				467FC3601C7DD2F400698EE6 /* PlanTableViewController.m in Sources */,
 				46B6514C1C7AFD3700D4267A /* LoginViewController.m in Sources */,
 				467FC3631C7DD8CC00698EE6 /* PlanItemCell.m in Sources */,
+				468894461CF59E18002900D4 /* HistoryViewController.m in Sources */,
 				469754061CF3441F003670AD /* TraceDao.m in Sources */,
 				469754091CF34457003670AD /* Trace.m in Sources */,
 				46948E3F1C843AAB00F214D5 /* SettingViewController.m in Sources */,
@@ -628,7 +628,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dejun Chen (695STD6YP8)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -643,6 +643,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -653,9 +654,10 @@
 			baseConfigurationReference = 4B36B83676EDE50B15FF47CE /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = shtsios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.itiis.shtsios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.itiis.shts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -665,9 +667,10 @@
 			baseConfigurationReference = AE347E9AC8C3DF1A8849468B /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dejun Chen (695STD6YP8)";
 				INFOPLIST_FILE = shtsios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.itiis.shtsios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.itiis.shts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

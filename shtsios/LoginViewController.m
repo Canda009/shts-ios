@@ -85,7 +85,7 @@
     [manager POST:loginUrl parameters:params progress:^(NSProgress *progress){
     
     } success:^(NSURLSessionDataTask *operation,id responseObject){
-        NSLog(@"%@",responseObject);
+        //NSLog(@"%@",responseObject);
         //NSLog(@"%@",[NSThread currentThread]);
       
         
@@ -111,12 +111,12 @@
             
         }
         else{
-            NSLog(@"loign failed");
+           // NSLog(@"loign failed");
         //login failed  do  nothing;
         }
         
     } failure:^(NSURLSessionDataTask *operation,NSError *error){
-        NSLog(@"%@",error);
+        //NSLog(@"%@",error);
     }];
     /*[manager POST:@"http://202.114.93.4:8080/shts/login.do" parameters:loginDict success:^(NSURLSessionDataTask *operation,id responseObject){
         NSLog(@"%@",responseObject);

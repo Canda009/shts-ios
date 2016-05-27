@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 extern NSString * const SERVER_URL;
+extern NSString * const IOS_KEY;
 @interface Constants : NSObject
 
 @end

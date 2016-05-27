@@ -1,28 +1,21 @@
 //
-//  HomeViewController.m
+//  HistoryViewController.m
 //  shtsios
 //
-//  Created by cdj on 16/2/29.
+//  Created by cdj on 16/5/25.
 //  Copyright © 2016年 itiis. All rights reserved.
 //
 
-#import "HomeViewController.h"
+#import "HistoryViewController.h"
 
-@interface HomeViewController ()
+@interface HistoryViewController ()
 
 @end
 
-@implementation HomeViewController
+@implementation HistoryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *hadjoin = @"yes";
-    
-    [userDefaults setObject:hadjoin forKey:@"hadjoin"];
-    
-    [userDefaults synchronize];
     // Do any additional setup after loading the view.
 }
 
