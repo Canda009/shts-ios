@@ -10,5 +10,7 @@
 
 @interface SettingViewController : UITableViewController
 - (IBAction)logoutAction:(id)sender;
+- (IBAction)viewHistory:(id)sender;
+- (IBAction)quitPlan:(id)sender;
 
 @end

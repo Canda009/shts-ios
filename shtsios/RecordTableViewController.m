@@ -105,7 +105,7 @@
         [recordsArray addObject:myRecord];
     }
     [self.tableView reloadData];
-    NSNumber *countNumber = [NSNumber numberWithUnsignedInteger:[recordsArray count]];
+    //NSNumber *countNumber = [NSNumber numberWithUnsignedInteger:[recordsArray count]];
     
     //NSLog(@"the count is %@",[countNumber stringValue]);
     /*

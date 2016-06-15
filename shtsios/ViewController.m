@@ -8,7 +8,9 @@
 
 #import "ViewController.h"
 #import <MAMapKit/MAMapKit.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
 #import <AFHTTPSessionManager.h>
+
 #import "Constants.h"
 #import "TraceDao.h"
 #import "RecordDao.h"
@@ -29,7 +31,7 @@
 @implementation ViewController
 
 - (void)initMapView{
-    [MAMapServices sharedServices].apiKey = IOS_KEY;
+    [AMapServices sharedServices].apiKey = IOS_KEY;
     _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
     _mapView.delegate = self;
     _mapView.compassOrigin = CGPointMake(_mapView.compassOrigin.x, 22);

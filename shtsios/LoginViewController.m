@@ -14,10 +14,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameInput;
 @property (weak, nonatomic) IBOutlet UITextField *passwordInput;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-@property (weak, nonatomic) IBOutlet UIButton *forgetBtn;
+//@property (weak, nonatomic) IBOutlet UIButton *forgetBtn;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
 - (IBAction)backAction:(id)sender;
 - (IBAction)loginAction:(id)sender;
+- (IBAction)signupAction:(id)sender;
 
 @end
 
@@ -124,5 +125,11 @@
     } failure:^(NSURLSessionDataTask *opeartion,NSError *error){
         NSLog(@"%@",error);
     }];*/
+}
+
+- (IBAction)signupAction:(id)sender {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"功能暂未开放" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
 }
 @end

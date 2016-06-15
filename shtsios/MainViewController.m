@@ -11,9 +11,9 @@
 @interface MainViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
-@property (weak, nonatomic) IBOutlet UIButton *emailBtn;
+//@property (weak, nonatomic) IBOutlet UIButton *emailBtn;
 
-@property (weak, nonatomic) IBOutlet UIButton *tryBtn;
+//@property (weak, nonatomic) IBOutlet UIButton *tryBtn;
 
 @end
 
@@ -33,7 +33,7 @@
     [_phoneBtn.layer setCornerRadius:10];   
     [_phoneBtn.layer setBorderColor:color];
     
-    
+    /*
     [_emailBtn.layer setMasksToBounds:YES];
     [_emailBtn.layer setBorderWidth:1];
     [_emailBtn.layer setCornerRadius:10];
@@ -43,7 +43,7 @@
     [_tryBtn.layer setBorderWidth:1];
     [_tryBtn.layer setCornerRadius:10];
     [_tryBtn.layer setBorderColor:color];
-
+*/
 }
 -(void)viewDidAppear:(BOOL)animated{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];

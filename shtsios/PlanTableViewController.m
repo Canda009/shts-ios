@@ -79,8 +79,8 @@
     manager.responseSerializer=[AFHTTPResponseSerializer serializer];
     
     
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSString *username = [userDefault objectForKey:@"username"];
+    //NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    //NSString *username = [userDefault objectForKey:@"username"];
     
         //NSLog(@"the username is %@",username);
        

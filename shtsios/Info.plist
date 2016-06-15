@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>iosamap</string>
@@ -32,7 +32,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>提示</string>
+	<string>为了记录出行轨迹，shts会在后台持续使用定位，请选择允许</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
