@@ -7,8 +7,12 @@
 //
 
 #import "SettingViewController.h"
+#import "NSString+FontAwesome.h"
 
 @interface SettingViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *settingLabel01;
+@property (weak, nonatomic) IBOutlet UILabel *settingLabel02;
+@property (weak, nonatomic) IBOutlet UILabel *settingLabel03;
 
 @end
 
@@ -17,6 +21,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    _settingLabel01.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+    _settingLabel01.text = [NSString fontAwesomeIconStringForEnum:FAhistory];
+    [_settingLabel01 setTextColor:[UIColor darkGrayColor]];
+    
+    _settingLabel02.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+    _settingLabel02.text = [NSString fontAwesomeIconStringForEnum:FABackward];
+    [_settingLabel02 setTextColor:[UIColor darkGrayColor]];
+    
+    _settingLabel03.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+    _settingLabel03.text = [NSString fontAwesomeIconStringForEnum:FAUser];
+    [_settingLabel03 setTextColor:[UIColor darkGrayColor]];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -20,6 +20,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *stopnum;
 
 @property (weak, nonatomic) IBOutlet UIButton *detailButton;
+@property (weak, nonatomic) IBOutlet UILabel *iconLabel01;
+@property (weak, nonatomic) IBOutlet UILabel *iconLabel02;
+@property (weak, nonatomic) IBOutlet UILabel *iconLabel03;
+
+
+
 - (IBAction)detailView:(id)sender;
 
 @end

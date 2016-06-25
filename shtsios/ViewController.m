@@ -25,7 +25,11 @@
     NSMutableArray *_pointList;
     NSMutableArray *indexes;
     MAMultiPolyline *_polyline;
+    //CLLocationCoordinate2D *currnentLoation;
 }
+- (IBAction)locationAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *gpsLabel;
+@property (weak, nonatomic) IBOutlet UIButton *locationLabel;
 @end
 
 @implementation ViewController
@@ -38,6 +42,7 @@
     _mapView.scaleOrigin = CGPointMake(_mapView.scaleOrigin.x, 22);
     
     [self.view addSubview:_mapView];
+    //_mapView.zoomLevel = 18.0;
     //NSLog(@"it's initMapView()");
     
     
@@ -46,11 +51,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [_gpsLabel.layer setMasksToBounds:YES];
+    //[_gpsLabel.layer setBorderWidth:1];
+    [_gpsLabel.layer setCornerRadius:5];
+    
+    [_locationLabel.layer setMasksToBounds:YES];
+    //[_gpsLabel.layer setBorderWidth:1];
+    [_locationLabel.layer setCornerRadius:5];
     
     [self initMapView];
     _mapView.showsUserLocation = YES;
     _mapView.pausesLocationUpdatesAutomatically = NO;
     _mapView.allowsBackgroundLocationUpdates = YES;
+    _mapView.distanceFilter = 25.0;
+    _mapView.headingFilter = 90;
     if(_mapView.userTrackingMode != MAUserTrackingModeFollow){
         [_mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
     }
@@ -64,6 +78,8 @@
 -(void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation{
     if(updatingLocation){
         //NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
+       // currnentLoation[0] = userLocation.location.coordinate;
+        //currnentLoation[0]=userLocation.location.coordinate;
         NSString *currentLatitude = [NSString stringWithFormat:@"%f",userLocation.location.coordinate.latitude];
         NSString *currentLogitude = [NSString stringWithFormat:@"%f",userLocation.location.coordinate.longitude];
         NSString *speed = [NSString stringWithFormat:@"%f",userLocation.location.speed];
@@ -166,6 +182,13 @@
             //NSLog(@"%@",error);
         }];
         
+        if (userLocation.location.horizontalAccuracy <30.0) {
+            _gpsLabel.titleLabel.text = @"GPS强";
+        }
+        else{
+            _gpsLabel.titleLabel.text = @"GPS弱";
+        }
+        
         [_pointList addObject:userLocation.location];
         long pointNum= [_pointList count];
         if(pointNum == 1 ){
@@ -183,6 +206,51 @@
             [indexes addObject:@(pointNum)];
             _polyline = [MAMultiPolyline polylineWithCoordinates:_runningCoords count:[_pointList count] drawStyleIndexes:indexes];
             [_mapView addOverlay:_polyline];
+            
+        }
+        
+        //以下是判断停留点的过程 先找到距离当前点之前5分钟的点，再对两点之间所有点进行算法处理
+        if (pointNum>20) {
+            long numFind = pointNum-2;
+            long timeInterval = 0;
+            CLLocation* currentLocation = userLocation.location;
+            while (timeInterval < 300 || numFind ==0) {
+                
+                CLLocation* beforeLocation = [_pointList objectAtIndex:numFind];
+                timeInterval = [currentLocation.timestamp timeIntervalSinceDate:beforeLocation.timestamp];
+                numFind--;
+            }
+            
+            if(numFind >0 && timeInterval>300){
+                if((pointNum-numFind)<6){
+                    //stop
+                    MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+                    pointAnnotation.coordinate= userLocation.location.coordinate;
+                    NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
+                    [dateformatter setDateFormat:@"MM-dd HH:mm:ss"];
+                    NSString* title = [dateformatter stringFromDate:userLocation.location.timestamp];
+                    pointAnnotation.title = title;
+                    pointAnnotation.subtitle = @"停留";
+                    [_mapView addAnnotation:pointAnnotation];
+                }
+                else{
+                    
+                    
+                
+                }
+            
+            }
+            
+         
+        }
+        
+        
+        if (pointNum == 1000) {
+            _pointList = [NSMutableArray array];
+            _speedColors = [NSMutableArray array];
+            indexes = [NSMutableArray array];
+            free(_runningCoords);
+            _runningCoords = (CLLocationCoordinate2D *)malloc(1000*sizeof(CLLocationCoordinate2D));
             
         }
     }
@@ -212,7 +280,8 @@
     _pointList = [NSMutableArray array];
     _speedColors = [NSMutableArray array];
     indexes = [NSMutableArray array];
-    _runningCoords = (CLLocationCoordinate2D *)malloc(500*sizeof(CLLocationCoordinate2D));
+    _runningCoords = (CLLocationCoordinate2D *)malloc(1000*sizeof(CLLocationCoordinate2D));
+    //currnentLoation = (CLLocationCoordinate2D *)malloc(sizeof(CLLocationCoordinate2D));
     
     /*
     _speedColors = [NSMutableArray array];
@@ -263,13 +332,62 @@
     [self initData];
     //[_mapView addOverlay:_polyline];
     //NSLog(@"it's viewDidAppear()");
+    
+    //测试放置两个 大头针的demo
+    /*
+    MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+    pointAnnotation.coordinate= CLLocationCoordinate2DMake(30.51, 114.343);
+    pointAnnotation.title = @"20160622";
+    pointAnnotation.subtitle = @"test";
+    [_mapView addAnnotation:pointAnnotation];
+    
+    MAPointAnnotation *pointAnnotation1 = [[MAPointAnnotation alloc] init];
+    pointAnnotation1.coordinate= CLLocationCoordinate2DMake(30.50, 114.343);
+    pointAnnotation1.title = @"20160622";
+    pointAnnotation1.subtitle = @"test";
+    [_mapView addAnnotation:pointAnnotation1];
+    */
+    /*测试nsdate相减的秒数
+    NSDate *beforeDate = [self getCustomDateWithHour:0];
+    NSDate *currentDate = [self getCustomDateWithHour:1];
+    long timemill = [currentDate timeIntervalSinceDate:beforeDate];
+    NSLog(@"interval is-%ld",timemill);
+    */
+    
+}
+
+
+
+-(MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation {
+    if ([annotation isKindOfClass:[MAPointAnnotation class]]) {
+        static NSString *pointReuseIndentifier = @"pointReuserIndentifier";
+        MAPinAnnotationView *annotationView = (MAPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndentifier];
+        if (annotationView == nil) {
+            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndentifier];
+        }
+        annotationView.canShowCallout = YES;
+        annotationView.animatesDrop = YES;
+        annotationView.draggable = NO;
+        annotationView.pinColor = MAPinAnnotationColorRed;
+        return annotationView;
+    }
+    return  nil;
 }
 
 -(void)dealloc{
     if(_runningCoords){
         free(_runningCoords);
+        
         _count=0;
     }
 }
 
+- (IBAction)locationAction:(id)sender {
+    if ([_pointList count] > 0 ) {
+        
+        //[_mapView setCenterCoordinate:_mapView.userLocation.location.coordinate animated:YES];
+        [_mapView setCenterCoordinate:_runningCoords[[_pointList count]-1] animated:YES];
+    }
+    
+}
 @end

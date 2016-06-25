@@ -12,6 +12,7 @@
 #import "HomeViewController.h"
 #import <AFHTTPSessionManager.h>
 #import "Constants.h"
+#import "NSString+FontAwesome.h"
 
 @interface PlanTableViewController ()<myTabVdelegate>
 {
@@ -148,7 +149,28 @@
     cell.startendLabel.text = [planDict objectForKey:@"starttime"];
     cell.areaLabel.text = [planDict objectForKey:@"area"];
     [cell.joinButton.layer setCornerRadius:6];
+    
+    
+    
+    cell.iconLabel02.font = [UIFont fontWithName:kFontAwesomeFamilyName size:15];
+    cell.iconLabel02.text = [NSString fontAwesomeIconStringForIconIdentifier:@"fa-align-justify"];
+    [cell.iconLabel02 setTextColor:[UIColor darkGrayColor]];
    
+    cell.iconLabel03.font = [UIFont fontWithName:kFontAwesomeFamilyName size:15];
+    cell.iconLabel03.text = [NSString fontAwesomeIconStringForIconIdentifier:@"fa-calendar"];
+    [cell.iconLabel03 setTextColor:[UIColor darkGrayColor]];
+    
+    cell.iconLabel04.font = [UIFont fontWithName:kFontAwesomeFamilyName size:15];
+    cell.iconLabel04.text = [NSString fontAwesomeIconStringForIconIdentifier:@"fa-building"];
+    [cell.iconLabel04 setTextColor:[UIColor darkGrayColor]];
+    
+    cell.iconLabel05.font = [UIFont fontWithName:kFontAwesomeFamilyName size:15];
+    cell.iconLabel05.text = [NSString fontAwesomeIconStringForIconIdentifier:@"fa-clock-o"];
+    [cell.iconLabel05 setTextColor:[UIColor darkGrayColor]];
+    
+    cell.iconLabel06.font = [UIFont fontWithName:kFontAwesomeFamilyName size:15];
+    cell.iconLabel06.text = [NSString fontAwesomeIconStringForIconIdentifier:@"fa-location-arrow"];
+    [cell.iconLabel06 setTextColor:[UIColor darkGrayColor]];
     //NSLog(@"the name is %@",[planDict objectForKey:@"name"]);
 
     cell.delegate = self;

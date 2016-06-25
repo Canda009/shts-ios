@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import <AFHTTPSessionManager.h>
 #import "Constants.h"
+#import "NSString+FontAwesome.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *usernameInput;
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 //@property (weak, nonatomic) IBOutlet UIButton *forgetBtn;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
+@property (weak, nonatomic) IBOutlet UILabel *signupIconLabel;
 - (IBAction)backAction:(id)sender;
 - (IBAction)loginAction:(id)sender;
 - (IBAction)signupAction:(id)sender;
@@ -27,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    //[_backButton setBackgroundImage:[UIImage new] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSString *username = [userDefault objectForKey:@"username"];
@@ -43,13 +45,18 @@
     [_registerBtn.layer setBorderWidth:1];
     [_registerBtn.layer setCornerRadius:5];
     
+    _signupIconLabel.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+    _signupIconLabel.text = [NSString fontAwesomeIconStringForIconIdentifier:@"fa-user"];
+    [_signupIconLabel setTextColor:[UIColor blackColor]];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerCompletion:) name:@"RegisterCompletionNotification" object:nil];
 
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     // Dispose of any resources that can be recreated.
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -129,7 +136,15 @@
 
 - (IBAction)signupAction:(id)sender {
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"功能暂未开放" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
+    //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"功能暂未开放" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    //[alert show];
 }
+
+-(void)registerCompletion:(NSNotification*)notification{
+    NSDictionary *theData = [notification userInfo];
+    NSString *username = [theData objectForKey:@"username"];
+    _usernameInput.text = username;
+    
+}
+
 @end

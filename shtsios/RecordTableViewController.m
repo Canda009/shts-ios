@@ -10,10 +10,15 @@
 #import "RecordItemCell.h"
 #import "HomeViewController.h"
 #import "RecordDao.h"
+#import "RecordViewViewController.h"
+#import "HistoryNaviViewController.h"
+#import "NSString+FontAwesome.h"
 
 @interface RecordTableViewController ()<myTabVdelegate01>
 {
     NSMutableArray *recordsArray;
+    NSDate * sendDate;
+    
 }
 
 @end
@@ -21,8 +26,17 @@
 @implementation RecordTableViewController
 
 -(void)myTabVClick:(UITableViewCell *)cell{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"功能暂未开放" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
+    //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"功能暂未开放" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    //[alert show];
+    NSIndexPath *index = [self.tableView indexPathForCell:cell];
+    //NSLog(@"the current cell == %d",index.row);
+    Record *record = [recordsArray objectAtIndex:index.row];
+    sendDate = record.recordstarttime;
+    //NSLog(@"%@",record.recordstarttime);
+    //NSDictionary *recordDict = [NSDictionary dictionaryWithObject:record.recordstarttime forKey:@"recordstartime"];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"RecordViewNotification" object:nil userInfo:recordDict];
+    [self performSegueWithIdentifier:@"RecordView" sender:self];
+    
     /*
     NSIndexPath *index = [self.tableView indexPathForCell:cell];
     //NSLog(@"the current cell == %ld",index.row);
@@ -77,6 +91,18 @@
      
      [self presentViewController:navigationController animated:YES completion:^{}];*/
     
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+    if ([segue.identifier isEqualToString:@"RecordView"]) {
+        // segue.destinationViewController：获取连线时所指的界面（VC）
+        RecordViewViewController *receive = segue.destinationViewController;
+        receive.receiveDate = sendDate;
+        
+        // 这里不需要指定跳转了，因为在按扭的事件里已经有跳转的代码
+        //        [self.navigationController pushViewController:receive animated:YES];
+    }
 }
 
 
@@ -163,6 +189,18 @@
     cell.distance.text =[NSString stringWithFormat:@"里程:%@",record.distance.description];
     cell.avgspeed.text = [NSString stringWithFormat:@"平均速度:%@",record.avgsped.description];
     cell.stopnum.text = [NSString stringWithFormat:@"停留点数:%@",record.stopnum.description];
+    
+    cell.iconLabel01.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+    cell.iconLabel01.text = [NSString fontAwesomeIconStringForEnum:FALocationArrow];
+    [cell.iconLabel01 setTextColor:[UIColor darkGrayColor]];
+    
+    cell.iconLabel02.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+    cell.iconLabel02.text = [NSString fontAwesomeIconStringForEnum:FAspaceShuttle];
+    [cell.iconLabel02 setTextColor:[UIColor darkGrayColor]];
+    
+    cell.iconLabel03.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+    cell.iconLabel03.text = [NSString fontAwesomeIconStringForEnum:FACalendar];
+    [cell.iconLabel03 setTextColor:[UIColor darkGrayColor]];
     
     [cell.detailButton.layer setCornerRadius:6];
     

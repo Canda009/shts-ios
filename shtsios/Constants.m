@@ -8,7 +8,9 @@
 
 #import "Constants.h"
 NSString * const SERVER_URL = @"http://61.183.140.138:8080";
+//NSString * const SERVER_URL = @"http://192.168.1.119:8080";
 NSString * const IOS_KEY = @"f3e9fad54427756a8373a0795e81fd00";
+NSString * const IOS_KEY_RECORD = @"b8d603aeab08f9d193085b424798d204";
 @implementation Constants
 
 @end

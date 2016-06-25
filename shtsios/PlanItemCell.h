@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NSString+FontAwesome.h"
 @protocol myTabVdelegate<NSObject>
 -(void)myTabVClick:(UITableViewCell*)cell;
 @end
@@ -22,6 +23,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *startendLabel;
 @property (weak, nonatomic) IBOutlet UILabel *areaLabel;
 @property (weak, nonatomic) IBOutlet UIButton *joinButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *iconLabel01;
+
+@property (weak, nonatomic) IBOutlet UILabel *iconLabel02;
+@property (weak, nonatomic) IBOutlet UILabel *iconLabel03;
+@property (weak, nonatomic) IBOutlet UILabel *iconLabel04;
+@property (weak, nonatomic) IBOutlet UILabel *iconLabel05;
+@property (weak, nonatomic) IBOutlet UILabel *iconLabel06;
+
 
 - (IBAction)joinAction:(id)sender;
 
