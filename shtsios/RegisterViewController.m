@@ -28,6 +28,7 @@
 @synthesize name;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     btnSelect.layer.borderWidth = 1;
     btnSelect.layer.borderColor = [[UIColor blackColor] CGColor];
@@ -292,6 +293,29 @@
 -(void)rel{
     //    [dropDown release];
     dropDown = nil;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    //[[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    //[[self findFirstResponderBeneathView:self] resignFirstResponder];
+    [textField resignFirstResponder];
+    return YES;
+}
+- (UIView*)findFirstResponderBeneathView:(UIView*)view
+{
+    // Search recursively for first responder
+    for ( UIView *childView in view.subviews ) {
+        if ( [childView respondsToSelector:@selector(isFirstResponder)] && [childView isFirstResponder] )
+            return childView;
+        UIView *result = [self findFirstResponderBeneathView:childView];
+        if ( result )
+            return result;
+    }
+    return nil;
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 
 - (BOOL)validateMobile:(NSString *)mobileNum
