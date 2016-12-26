@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomCalloutView.h"
+@protocol SegueDelegate <NSObject>
 
-@interface ViewController : UIViewController
+- (void)DoSegue;
 
+@end
+
+@interface ViewController : UIViewController <SegueDelegate>
+-(void)DoSegue;
 
 @end
 

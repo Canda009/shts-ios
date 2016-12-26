@@ -22,6 +22,8 @@
 @synthesize btnSelect2;
 @synthesize btnSelect3;
 @synthesize btnSelect4;
+@synthesize btnSelect5;
+@synthesize btnSelect6;
 @synthesize username;
 @synthesize password;
 @synthesize passwordAgain;
@@ -50,6 +52,13 @@
     btnSelect4.layer.borderColor = [[UIColor blackColor] CGColor];
     btnSelect4.layer.cornerRadius = 5;
     
+    btnSelect5.layer.borderWidth = 1;
+    btnSelect5.layer.borderColor = [[UIColor blackColor] CGColor];
+    btnSelect5.layer.cornerRadius = 5;
+    
+    btnSelect6.layer.borderWidth = 1;
+    btnSelect6.layer.borderColor = [[UIColor blackColor] CGColor];
+    btnSelect6.layer.cornerRadius = 5;
     
     _iconLabel01.font = [UIFont fontWithName:kFontAwesomeFamilyName size:15];
     
@@ -95,6 +104,16 @@
     
     _iconLabel09.text = [NSString fontAwesomeIconStringForIconIdentifier:@"fa-star"];
     [_iconLabel09 setTextColor:[UIColor darkGrayColor]];
+    
+    _iconLabel10.font = [UIFont fontWithName:kFontAwesomeFamilyName size:15];
+    
+    _iconLabel10.text = [NSString fontAwesomeIconStringForIconIdentifier:@"fa-star"];
+    [_iconLabel10 setTextColor:[UIColor darkGrayColor]];
+    
+    _iconLabel11.font = [UIFont fontWithName:kFontAwesomeFamilyName size:15];
+    
+    _iconLabel11.text = [NSString fontAwesomeIconStringForIconIdentifier:@"fa-star"];
+    [_iconLabel11 setTextColor:[UIColor darkGrayColor]];
     
 }
 
@@ -160,7 +179,7 @@
         dropDown2.delegate = self;
     }
     else {
-        [dropDown hideDropDown:sender];
+        [dropDown2 hideDropDown:sender];
         //[self rel];
         dropDown2 = nil;
     }
@@ -184,11 +203,11 @@
 
 - (IBAction)selectClicked4:(id)sender {
     NSArray * arr = [[NSArray alloc] init];
-    arr = [NSArray arrayWithObjects:@"在校中小学生", @"在校大专及以上学生", @"工人", @"公务员", @"事业单位人员 44", @"公司职员", @"服务人员", @"私营个体企业者", @"无业，失业人员", @"离退休人员",@"农民",@"其他",nil];
+    arr = [NSArray arrayWithObjects:@"第一产业", @"第二产业", @"第三产业", @"其他",nil];
     
     if(dropDown4 == nil) {
-        CGFloat f = 200;
-        dropDown4 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        CGFloat f = 160;
+        dropDown4 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"up"];
         dropDown4.delegate = self;
     }
     else {
@@ -196,6 +215,75 @@
         //[self rel];
         dropDown4 = nil;
     }
+}
+
+- (IBAction)selectClicked5:(id)sender {
+    /*
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"000", @"111", @"222", @"333",nil];
+    
+    if(dropDown5 == nil) {
+        CGFloat f = 160;
+        dropDown5 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        dropDown5.delegate = self;
+    }
+    else {
+        [dropDown5 hideDropDown:sender];
+        //[self rel];
+        dropDown5 = nil;
+    }
+*/
+    
+    
+    if([btnSelect4.titleLabel.text isEqualToString:@"选择"]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"行业大类不能为空！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }else{
+        NSArray * arr = [[NSArray alloc] init];
+        
+        
+
+        if([btnSelect4.titleLabel.text isEqualToString:@"第一产业"]){
+            arr = [NSArray arrayWithObjects:@"农业", @"林业", @"牧业", @"渔业",@"其他",nil];
+        }
+        if([btnSelect4.titleLabel.text isEqualToString:@"第二产业"]){
+            arr = [NSArray arrayWithObjects:@"采矿业", @"制造业", @"电力燃气及水供应业", @"建筑业",nil];
+        }
+        if([btnSelect4.titleLabel.text isEqualToString:@"第三产业"]){
+            arr = [NSArray arrayWithObjects:@"交通运输仓储邮政业", @"信息传输计算机业", @"批发零售餐饮业", @"金融房地产商业服务业",@"其他",nil];
+        }
+        if([btnSelect4.titleLabel.text isEqualToString:@"其他"]){
+            arr = [NSArray arrayWithObjects:@"其他",nil];
+        }
+        if(dropDown5 == nil) {
+            CGFloat f = 200;
+            dropDown5 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"up"];
+            dropDown5.delegate = self;
+        }
+        else {
+            [dropDown5 hideDropDown:sender];
+            //[self rel];
+            dropDown5 = nil;
+        }
+
+    }
+}
+
+- (IBAction)selectClicked6:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"国家机关、党群组织、企业、事业单位负责人", @"专业技术人员", @"办事人员和有关人员", @"商业、服务人员",@"农林牧渔水利业生产人员",@"生产、运输设备操作人员",@"退休或无业人员",@"其他",nil];
+    
+    if(dropDown6 == nil) {
+        CGFloat f = 160;
+        dropDown6 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"up"];
+        dropDown6.delegate = self;
+    }
+    else {
+        [dropDown6 hideDropDown:sender];
+        //[self rel];
+        dropDown6 = nil;
+    }
+
 }
 
 
@@ -278,6 +366,7 @@
     
    
 }
+
 
 - (IBAction)backClicked:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

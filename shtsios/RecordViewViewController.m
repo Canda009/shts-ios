@@ -19,7 +19,9 @@
 
 @interface RecordViewViewController ()<MAMapViewDelegate>
 {
+    __weak IBOutlet UITableView *timelineTable;
     MAMapView *_mapView;
+    //UILayoutContainerView
     NSMutableArray *_speedColors;
     CLLocationCoordinate2D *_runningCoords;
     NSUInteger _count;
@@ -44,6 +46,7 @@
     
     
     [self.view addSubview:_mapView];
+    
    
     //NSLog(@"it's initMapView()");
     
@@ -121,14 +124,41 @@
     
     NSMutableArray *all =  [dao findByStartDate:startDate endDate:endDate];
     _runningCoords = (CLLocationCoordinate2D *)malloc([all count]*sizeof(CLLocationCoordinate2D));
+    NSString *lastState=@"move";
+    //int gpscount=0;
     for (int i=0; i< [all count]; i++) {
         Trace *myTrace = all[i];
         //long pointNum = i+1;
+        /*
+        if ([myTrace.accuracy doubleValue]<=30.0) {
+            _runningCoords[gpscount].latitude =[myTrace.latitude doubleValue];
+            _runningCoords[gpscount].longitude=[myTrace.longitude doubleValue];
+            UIColor *speedColor = [self getColorForSpeed:[myTrace.speed doubleValue]];
+            [_speedColors addObject:speedColor];
+            [indexes addObject:@(gpscount)];
+            gpscount++;
+        }*/
+        
         _runningCoords[i].latitude =[myTrace.latitude doubleValue];
         _runningCoords[i].longitude=[myTrace.longitude doubleValue];
         UIColor *speedColor = [self getColorForSpeed:[myTrace.speed doubleValue]];
         [_speedColors addObject:speedColor];
         [indexes addObject:@(i)];
+        
+        
+        
+                //放置停留点
+        if ([myTrace.state isEqualToString:@"stop"]&&[lastState isEqualToString:@"move"]) {
+            MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+            pointAnnotation.coordinate= CLLocationCoordinate2DMake([myTrace.latitude doubleValue], [myTrace.longitude doubleValue]);
+            NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
+            [dateformatter setDateFormat:@"MM-dd HH:mm:ss"];
+            NSString* title = [dateformatter stringFromDate:myTrace.tracetime];
+            pointAnnotation.title = title;
+            pointAnnotation.subtitle = @"停留";
+            [_mapView addAnnotation:pointAnnotation];
+        }
+        lastState=myTrace.state;
         
     }
     //NSLog(@"trace count is-%lu",[all count]);
@@ -204,7 +234,10 @@
 }
 
 - (IBAction)backAction:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    //[self dismissViewControllerAnimated:NO completion:nil];
+    //[self performSegueWithIdentifier:@"RecordViewBack" sender:nil];
 }
 
 -(UIStatusBarStyle) preferredStatusBarStyle {

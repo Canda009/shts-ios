@@ -16,6 +16,10 @@
 		460E51071C7360A00085C91D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460E51051C7360A00085C91D /* LaunchScreen.storyboard */; };
 		460E51121C7360A10085C91D /* shtsiosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 460E51111C7360A10085C91D /* shtsiosTests.m */; };
 		460E511D1C7360A10085C91D /* shtsiosUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 460E511C1C7360A10085C91D /* shtsiosUITests.m */; };
+		461177F81D8C11AD00231FB0 /* Survey+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 461177F51D8C11AD00231FB0 /* Survey+CoreDataProperties.m */; };
+		461177F91D8C11AD00231FB0 /* Survey.m in Sources */ = {isa = PBXBuildFile; fileRef = 461177F71D8C11AD00231FB0 /* Survey.m */; };
+		461177FC1D8C12B300231FB0 /* StopPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 461177FB1D8C12B300231FB0 /* StopPoint.m */; };
+		461177FF1D8C155400231FB0 /* StopDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 461177FE1D8C155400231FB0 /* StopDao.m */; };
 		463CA9C11C772099003C9722 /* running.json in Resources */ = {isa = PBXBuildFile; fileRef = 463CA9C01C772099003C9722 /* running.json */; };
 		465956F21CEABAAC00AB3555 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 465956F11CEABAAC00AB3555 /* Constants.m */; };
 		467FC3601C7DD2F400698EE6 /* PlanTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 467FC35F1C7DD2F400698EE6 /* PlanTableViewController.m */; };
@@ -37,6 +41,8 @@
 		469754121CF45C11003670AD /* RecordDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 469754111CF45C11003670AD /* RecordDao.m */; };
 		469754151CF45C45003670AD /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 469754141CF45C45003670AD /* Record.m */; };
 		469754181CF46EE9003670AD /* RecordItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 469754171CF46EE9003670AD /* RecordItemCell.m */; };
+		46A6954A1D81865000C18584 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A695471D81865000C18584 /* CustomAnnotationView.m */; };
+		46A6954B1D81865000C18584 /* CustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A695491D81865000C18584 /* CustomCalloutView.m */; };
 		46A8D9161C79F9D7008E5C57 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A8D9151C79F9D7008E5C57 /* MainViewController.m */; };
 		46B6514C1C7AFD3700D4267A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B6514B1C7AFD3700D4267A /* LoginViewController.m */; };
 		46B724321D19779300BA3E0B /* HistoryNaviViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B724311D19779300BA3E0B /* HistoryNaviViewController.m */; };
@@ -62,6 +68,7 @@
 		46B724601D1BC27900BA3E0B /* tweet_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B7244C1D1BC27900BA3E0B /* tweet_selected@2x.png */; };
 		46B724611D1BC27900BA3E0B /* tweet_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B7244D1D1BC27900BA3E0B /* tweet_selected@3x.png */; };
 		46B724631D1BC61B00BA3E0B /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46B724621D1BC61B00BA3E0B /* FontAwesome.ttf */; };
+		46B7BD5D1D4DFCE200359892 /* SurveyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B7BD5C1D4DFCE200359892 /* SurveyViewController.m */; };
 		46C2D5031D129D1B0031E774 /* RecordViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C2D5021D129D1B0031E774 /* RecordViewViewController.m */; };
 		46E3EBA61D117594007F8215 /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E3EBA51D117594007F8215 /* NIDropDown.m */; };
 		46E3EBAC1D1176CA007F8215 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E3EBAB1D1176CA007F8215 /* RegisterViewController.m */; };
@@ -101,6 +108,14 @@
 		460E51181C7360A10085C91D /* shtsiosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = shtsiosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		460E511C1C7360A10085C91D /* shtsiosUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shtsiosUITests.m; sourceTree = "<group>"; };
 		460E511E1C7360A10085C91D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		461177F41D8C11AD00231FB0 /* Survey+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Survey+CoreDataProperties.h"; sourceTree = "<group>"; };
+		461177F51D8C11AD00231FB0 /* Survey+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Survey+CoreDataProperties.m"; sourceTree = "<group>"; };
+		461177F61D8C11AD00231FB0 /* Survey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Survey.h; sourceTree = "<group>"; };
+		461177F71D8C11AD00231FB0 /* Survey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Survey.m; sourceTree = "<group>"; };
+		461177FA1D8C12B300231FB0 /* StopPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopPoint.h; sourceTree = "<group>"; };
+		461177FB1D8C12B300231FB0 /* StopPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopPoint.m; sourceTree = "<group>"; };
+		461177FD1D8C155400231FB0 /* StopDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopDao.h; sourceTree = "<group>"; };
+		461177FE1D8C155400231FB0 /* StopDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopDao.m; sourceTree = "<group>"; };
 		463CA9C01C772099003C9722 /* running.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = running.json; sourceTree = "<group>"; };
 		465956F01CEABAAC00AB3555 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		465956F11CEABAAC00AB3555 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -141,6 +156,10 @@
 		469754141CF45C45003670AD /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 		469754161CF46EE9003670AD /* RecordItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordItemCell.h; sourceTree = "<group>"; };
 		469754171CF46EE9003670AD /* RecordItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordItemCell.m; sourceTree = "<group>"; };
+		46A695461D81865000C18584 /* CustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotationView.h; sourceTree = "<group>"; };
+		46A695471D81865000C18584 /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationView.m; sourceTree = "<group>"; };
+		46A695481D81865000C18584 /* CustomCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCalloutView.h; sourceTree = "<group>"; };
+		46A695491D81865000C18584 /* CustomCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCalloutView.m; sourceTree = "<group>"; };
 		46A8D9141C79F9D7008E5C57 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		46A8D9151C79F9D7008E5C57 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		46B6514A1C7AFD3700D4267A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -170,6 +189,8 @@
 		46B7244C1D1BC27900BA3E0B /* tweet_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tweet_selected@2x.png"; sourceTree = "<group>"; };
 		46B7244D1D1BC27900BA3E0B /* tweet_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tweet_selected@3x.png"; sourceTree = "<group>"; };
 		46B724621D1BC61B00BA3E0B /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		46B7BD5B1D4DFCE200359892 /* SurveyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyViewController.h; sourceTree = "<group>"; };
+		46B7BD5C1D4DFCE200359892 /* SurveyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyViewController.m; sourceTree = "<group>"; };
 		46C2D5011D129D1B0031E774 /* RecordViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewViewController.h; sourceTree = "<group>"; };
 		46C2D5021D129D1B0031E774 /* RecordViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewViewController.m; sourceTree = "<group>"; };
 		46E3EBA41D117594007F8215 /* NIDropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIDropDown.h; sourceTree = "<group>"; };
@@ -249,6 +270,10 @@
 		460E50F61C7360A00085C91D /* shtsios */ = {
 			isa = PBXGroup;
 			children = (
+				46A695461D81865000C18584 /* CustomAnnotationView.h */,
+				46A695471D81865000C18584 /* CustomAnnotationView.m */,
+				46A695481D81865000C18584 /* CustomCalloutView.h */,
+				46A695491D81865000C18584 /* CustomCalloutView.m */,
 				46B724391D1BC27900BA3E0B /* tabbar */,
 				46B724331D1B84E500BA3E0B /* NSString+FontAwesome.h */,
 				46B724341D1B84E500BA3E0B /* NSString+FontAwesome.m */,
@@ -296,6 +321,8 @@
 				46C2D5021D129D1B0031E774 /* RecordViewViewController.m */,
 				46B724301D19779300BA3E0B /* HistoryNaviViewController.h */,
 				46B724311D19779300BA3E0B /* HistoryNaviViewController.m */,
+				46B7BD5B1D4DFCE200359892 /* SurveyViewController.h */,
+				46B7BD5C1D4DFCE200359892 /* SurveyViewController.m */,
 			);
 			path = shtsios;
 			sourceTree = "<group>";
@@ -335,6 +362,8 @@
 				469754081CF34457003670AD /* Trace.m */,
 				469754131CF45C45003670AD /* Record.h */,
 				469754141CF45C45003670AD /* Record.m */,
+				461177FA1D8C12B300231FB0 /* StopPoint.h */,
+				461177FB1D8C12B300231FB0 /* StopPoint.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -346,6 +375,8 @@
 				469754051CF3441F003670AD /* TraceDao.m */,
 				469754101CF45C11003670AD /* RecordDao.h */,
 				469754111CF45C11003670AD /* RecordDao.m */,
+				461177FD1D8C155400231FB0 /* StopDao.h */,
+				461177FE1D8C155400231FB0 /* StopDao.m */,
 			);
 			name = Dao;
 			sourceTree = "<group>";
@@ -364,6 +395,10 @@
 				4697540B1CF45BB1003670AD /* RecordManagedObject+CoreDataProperties.m */,
 				4697540C1CF45BB1003670AD /* RecordManagedObject.h */,
 				4697540D1CF45BB1003670AD /* RecordManagedObject.m */,
+				461177F41D8C11AD00231FB0 /* Survey+CoreDataProperties.h */,
+				461177F51D8C11AD00231FB0 /* Survey+CoreDataProperties.m */,
+				461177F61D8C11AD00231FB0 /* Survey.h */,
+				461177F71D8C11AD00231FB0 /* Survey.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -615,6 +650,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				469753FF1CF341D9003670AD /* TraceManagedObject+CoreDataProperties.m in Sources */,
+				46B7BD5D1D4DFCE200359892 /* SurveyViewController.m in Sources */,
+				46A6954A1D81865000C18584 /* CustomAnnotationView.m in Sources */,
 				460E50FF1C7360A00085C91D /* ViewController.m in Sources */,
 				460E50FC1C7360A00085C91D /* AppDelegate.m in Sources */,
 				460E50F91C7360A00085C91D /* main.m in Sources */,
@@ -622,11 +659,14 @@
 				46948E451C84420200F214D5 /* RecordTableViewController.m in Sources */,
 				46948E421C843D6A00F214D5 /* HomeViewController.m in Sources */,
 				465956F21CEABAAC00AB3555 /* Constants.m in Sources */,
+				461177FC1D8C12B300231FB0 /* StopPoint.m in Sources */,
+				461177F91D8C11AD00231FB0 /* Survey.m in Sources */,
 				469754031CF342B5003670AD /* CoreDataDao.m in Sources */,
 				46948E481C84440500F214D5 /* HomeNaviViewController.m in Sources */,
 				469754001CF341D9003670AD /* TraceManagedObject.m in Sources */,
 				469754151CF45C45003670AD /* Record.m in Sources */,
 				4697540E1CF45BB1003670AD /* RecordManagedObject+CoreDataProperties.m in Sources */,
+				461177F81D8C11AD00231FB0 /* Survey+CoreDataProperties.m in Sources */,
 				46A8D9161C79F9D7008E5C57 /* MainViewController.m in Sources */,
 				46C2D5031D129D1B0031E774 /* RecordViewViewController.m in Sources */,
 				467FC3671C7DE96700698EE6 /* Plan.m in Sources */,
@@ -636,6 +676,7 @@
 				467FC3631C7DD8CC00698EE6 /* PlanItemCell.m in Sources */,
 				46B724371D1B84E600BA3E0B /* NSString+FontAwesome.m in Sources */,
 				468894461CF59E18002900D4 /* HistoryViewController.m in Sources */,
+				46A6954B1D81865000C18584 /* CustomCalloutView.m in Sources */,
 				469754061CF3441F003670AD /* TraceDao.m in Sources */,
 				469754091CF34457003670AD /* Trace.m in Sources */,
 				46948E3F1C843AAB00F214D5 /* SettingViewController.m in Sources */,
@@ -644,6 +685,7 @@
 				46E3EBA61D117594007F8215 /* NIDropDown.m in Sources */,
 				469753FA1CF33D37003670AD /* CoreDataTrace.xcdatamodeld in Sources */,
 				4697540F1CF45BB1003670AD /* RecordManagedObject.m in Sources */,
+				461177FF1D8C155400231FB0 /* StopDao.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,6 +827,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/shtsios/officialDemo2DNew-2/officialDemo2D/Extern",
+				);
 				INFOPLIST_FILE = shtsios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itiis.shts;
@@ -799,6 +845,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/shtsios/officialDemo2DNew-2/officialDemo2D/Extern",
+				);
 				INFOPLIST_FILE = shtsios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itiis.shts;

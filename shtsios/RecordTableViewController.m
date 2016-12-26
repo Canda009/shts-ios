@@ -35,7 +35,26 @@
     //NSLog(@"%@",record.recordstarttime);
     //NSDictionary *recordDict = [NSDictionary dictionaryWithObject:record.recordstarttime forKey:@"recordstartime"];
     //[[NSNotificationCenter defaultCenter] postNotificationName:@"RecordViewNotification" object:nil userInfo:recordDict];
-    [self performSegueWithIdentifier:@"RecordView" sender:self];
+    
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RecordViewViewController *vc = [story instantiateViewControllerWithIdentifier:@"RecordViewViewController"];
+    //vc setValue:coorinate.latitude forKey:rLatitude;
+    vc.receiveDate = sendDate;
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0) {
+        
+        vc.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+        
+    }else{
+        
+        self.modalPresentationStyle=UIModalPresentationCurrentContext;
+        
+    }
+    
+    //[self.navigationController showViewController:vc sender:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    //[self performSegueWithIdentifier:@"RecordView" sender:self];
     
     /*
     NSIndexPath *index = [self.tableView indexPathForCell:cell];
@@ -100,6 +119,16 @@
         RecordViewViewController *receive = segue.destinationViewController;
         receive.receiveDate = sendDate;
         
+        /*
+        if ([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0) {
+            
+            receive.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+            
+        }else{
+            
+            self.modalPresentationStyle=UIModalPresentationCurrentContext;
+            
+        }*/
         // 这里不需要指定跳转了，因为在按扭的事件里已经有跳转的代码
         //        [self.navigationController pushViewController:receive animated:YES];
     }

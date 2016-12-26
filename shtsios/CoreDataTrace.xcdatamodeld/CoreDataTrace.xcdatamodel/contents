@@ -16,6 +16,18 @@
         <attribute name="stopnum" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="user" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Survey" representedClassName="Survey" syncable="YES">
+        <attribute name="building" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="companynum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="companytype" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isvalid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="purpose" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stoptime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="user" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vehicle" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Trace" representedClassName="TraceManagedObject" syncable="YES">
         <attribute name="accuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="adcode" optional="YES" attributeType="String" syncable="YES"/>
@@ -35,6 +47,7 @@
     </entity>
     <elements>
         <element name="Record" positionX="-56" positionY="108" width="128" height="253"/>
+        <element name="Survey" positionX="-63" positionY="135" width="128" height="195"/>
         <element name="Trace" positionX="-63" positionY="-18" width="128" height="270"/>
     </elements>
 </model>
