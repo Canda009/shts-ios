@@ -16,6 +16,7 @@
 #import "TraceDao.h"
 #import "RecordDao.h"
 #import "CustomAnnotationView.h"
+#import "StopDao.h"
 
 
 #define kCalloutViewMargin          -8
@@ -72,7 +73,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     currentState=@"move";
-    //NSLog(@"123");
+    //NSLog(@"map viewload");
     // Do any additional setup after loading the view, typically from a nib.
     [_gpsLabel.layer setMasksToBounds:YES];
     //[_gpsLabel.layer setBorderWidth:1];
@@ -93,12 +94,12 @@
     }
     //NSLog(@"it's viewDidLoad()");
     
-    /*
+    
     //测试手动放置停留点；
     MAPointAnnotation *testAnnotation = [[MAPointAnnotation alloc] init];
     
-    testAnnotation.coordinate= CLLocationCoordinate2DMake(30.528687,114.338885);
-    //testAnnotation.coordinate= CLLocationCoordinate2DMake(39.9557260000,116.3435570000);
+    //testAnnotation.coordinate= CLLocationCoordinate2DMake(30.528687,114.338885);
+    testAnnotation.coordinate= CLLocationCoordinate2DMake(39.9557260000,116.3435570000);
 
     NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
     [dateformatter setDateFormat:@"MM-dd HH:mm:ss"];
@@ -106,7 +107,7 @@
     NSString* title = [dateformatter stringFromDate:nowDate];
     testAnnotation.title = title;
     testAnnotation.subtitle = @"停留";
-    [_mapView addAnnotation:testAnnotation];*/
+    [_mapView addAnnotation:testAnnotation];
     
 }
 
@@ -436,10 +437,37 @@
     NSCalendar *resultCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     return [resultCalendar dateFromComponents:resultComps];
 }
+
+
+
 -(void)viewDidAppear:(BOOL)animated{
     [self initData];
     //[_mapView addOverlay:_polyline];
     //NSLog(@"it's viewDidAppear()");
+    
+    
+    
+    
+    NSArray *allAnno= [_mapView annotations];
+    for (int i=0; i< [allAnno count]; i++) {
+        
+        MAPointAnnotation *an=allAnno[i];
+        
+        StopDAO *dao = [StopDAO sharedManager];
+        NSMutableArray *all=[dao findByLatitude:[NSNumber numberWithDouble:an.coordinate.latitude]];
+        if (all==nil || all ==NULL||[all count]==0) {
+            
+        }else{
+            
+            StopPoint *myStop = all[0];
+           
+            CustomAnnotationView *anview = (CustomAnnotationView*)[_mapView viewForAnnotation:an];
+            NSString *str = [an.title stringByAppendingString:myStop.purpose];
+            anview.title=myStop.purpose;
+        }
+        
+    }
+   
     
     //测试放置两个 大头针的demo
     /*
@@ -577,6 +605,7 @@
         annotationView.name     = @"河马";
         */
         //annotationView.delegate=self;
+        //annotationView.title     = @"河马";
         return annotationView;
     }
     

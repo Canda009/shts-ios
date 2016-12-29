@@ -14,6 +14,7 @@
 }*/
 //@property (nonatomic, retain) NSObject<SegueDelegate> *delegate;
 @property (nonatomic, copy) NSDate *date;
+@property (nonatomic, copy) NSString *title;
 
 //@property (nonatomic, strong) UIImage *portrait;
 

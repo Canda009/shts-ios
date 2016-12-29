@@ -33,6 +33,7 @@
 //@synthesize delegate;
 @synthesize calloutView;
 @synthesize date;
+@synthesize title;
 //@synthesize portraitImageView   = _portraitImageView;
 //@synthesize nameLabel           = _nameLabel;
 
@@ -120,7 +121,11 @@
             UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(60, 10, 100, 30)];
             name.backgroundColor = [UIColor clearColor];
             name.textColor = [UIColor whiteColor];
-            name.text = @"这是一个停留点!";
+            if (title == nil || title == NULL) {
+                title=@"停留点";
+            }else{
+            }
+            name.text = title;
             [self.calloutView addSubview:name];
         }
         

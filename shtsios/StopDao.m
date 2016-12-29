@@ -81,6 +81,31 @@ static StopDAO *sharedManager = nil;
     
     return resListData;
 }
+-(NSMutableArray*) findByLatitude:(NSNumber*)latitude
+{
+    NSManagedObjectContext *cxt = [self managedObjectContext];
+    
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Survey" inManagedObjectContext:cxt];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    fetchRequest.entity = entity;
+    
+    fetchRequest.predicate = [NSPredicate predicateWithFormat: @"latitude = %@",latitude];
+    
+    NSError *error = nil;
+    NSArray *listData = [cxt executeFetchRequest:fetchRequest error:&error];
+    
+    NSMutableArray *resListData = [[NSMutableArray alloc] init];
+    
+    for (Survey *mo in listData) {
+        StopPoint *stoppoint = [[StopPoint alloc] initWithUser:mo.user latitude:mo.latitude longitude:mo.longitude stoptime:mo.stoptime purpose:mo.purpose vehicle:mo.vehicle companytype:mo.companytype companynum:mo.companynum building:mo.building isvalid:mo.isvalid];
+        [resListData addObject:stoppoint];
+    }
+    
+    return resListData;
+}
 
 
 
