@@ -125,11 +125,11 @@
     NSMutableArray *all =  [dao findByStartDate:startDate endDate:endDate];
     _runningCoords = (CLLocationCoordinate2D *)malloc([all count]*sizeof(CLLocationCoordinate2D));
     NSString *lastState=@"move";
-    //int gpscount=0;
+    int gpscount=0;
     for (int i=0; i< [all count]; i++) {
         Trace *myTrace = all[i];
         //long pointNum = i+1;
-        /*
+        
         if ([myTrace.accuracy doubleValue]<=30.0) {
             _runningCoords[gpscount].latitude =[myTrace.latitude doubleValue];
             _runningCoords[gpscount].longitude=[myTrace.longitude doubleValue];
@@ -137,14 +137,14 @@
             [_speedColors addObject:speedColor];
             [indexes addObject:@(gpscount)];
             gpscount++;
-        }*/
-        
+        }
+        /*
         _runningCoords[i].latitude =[myTrace.latitude doubleValue];
         _runningCoords[i].longitude=[myTrace.longitude doubleValue];
         UIColor *speedColor = [self getColorForSpeed:[myTrace.speed doubleValue]];
         [_speedColors addObject:speedColor];
         [indexes addObject:@(i)];
-        
+        */
         
         
                 //放置停留点
@@ -167,7 +167,7 @@
         //[_mapView setZoomLevel:10];
     }
     
-    _polyline = [MAMultiPolyline polylineWithCoordinates:_runningCoords count:[all count] drawStyleIndexes:indexes];
+    _polyline = [MAMultiPolyline polylineWithCoordinates:_runningCoords count:gpscount drawStyleIndexes:indexes];
     
  
 }
