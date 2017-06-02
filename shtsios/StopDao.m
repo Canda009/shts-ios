@@ -37,7 +37,7 @@ static StopDAO *sharedManager = nil;
     [stoppoint setValue: model.longitude forKey:@"longitude"];
     [stoppoint setValue: model.stop_time forKey:@"stoptime"];
     [stoppoint setValue: model.purpose forKey:@"purpose"];
-    [stoppoint setValue: model.vehicle forKey:@"vehicle"];
+    [stoppoint setValue: model.vehicle forKey:@"vehicle"];  //交通工具
     [stoppoint setValue: model.company_type forKey:@"companytype"];
     [stoppoint setValue: model.company_num forKey:@"companynum"];
     [stoppoint setValue: model.building forKey:@"building"];
@@ -75,12 +75,23 @@ static StopDAO *sharedManager = nil;
     NSMutableArray *resListData = [[NSMutableArray alloc] init];
     
     for (Survey *mo in listData) {
-        StopPoint *stoppoint = [[StopPoint alloc] initWithUser:mo.user latitude:mo.latitude longitude:mo.longitude stoptime:mo.stoptime purpose:mo.purpose vehicle:mo.vehicle companytype:mo.companytype companynum:mo.companynum building:mo.building isvalid:mo.isvalid];
+        StopPoint *stoppoint = [[StopPoint alloc] initWithUser:mo.user
+                                                      latitude:mo.latitude
+                                                     longitude:mo.longitude
+                                                      stoptime:mo.stoptime
+                                                       purpose:mo.purpose
+                                                       vehicle:mo.vehicle
+                                                   companytype:mo.companytype
+                                                    companynum:mo.companynum
+                                                      building:mo.building
+                                                       isvalid:mo.isvalid];
         [resListData addObject:stoppoint];
     }
     
     return resListData;
 }
+
+//按照纬度查询数据方法
 -(NSMutableArray*) findByLatitude:(NSNumber*)latitude
 {
     NSManagedObjectContext *cxt = [self managedObjectContext];
@@ -100,7 +111,16 @@ static StopDAO *sharedManager = nil;
     NSMutableArray *resListData = [[NSMutableArray alloc] init];
     
     for (Survey *mo in listData) {
-        StopPoint *stoppoint = [[StopPoint alloc] initWithUser:mo.user latitude:mo.latitude longitude:mo.longitude stoptime:mo.stoptime purpose:mo.purpose vehicle:mo.vehicle companytype:mo.companytype companynum:mo.companynum building:mo.building isvalid:mo.isvalid];
+        StopPoint *stoppoint = [[StopPoint alloc] initWithUser:mo.user
+                                                      latitude:mo.latitude
+                                                     longitude:mo.longitude
+                                                      stoptime:mo.stoptime
+                                                       purpose:mo.purpose
+                                                       vehicle:mo.vehicle
+                                                   companytype:mo.companytype
+                                                    companynum:mo.companynum
+                                                      building:mo.building
+                                                       isvalid:mo.isvalid];
         [resListData addObject:stoppoint];
     }
     

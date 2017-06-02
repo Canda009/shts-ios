@@ -10,7 +10,15 @@
 
 @implementation Trace
 
--(id)initWithUser:(NSString *)user latitude:(NSNumber *)latitude longitude:(NSNumber *)longitude tracetime:(NSDate *)tracetime accuracy:(NSNumber *)accuracy speed:(NSNumber *)speed altitude:(NSNumber *)altitude bearing:(NSNumber *)bearing state:(NSString *)state {
+-(id)initWithUser:(NSString *)user
+         latitude:(NSNumber *)latitude
+        longitude:(NSNumber *)longitude
+        tracetime:(NSDate *)tracetime
+         accuracy:(NSNumber *)accuracy
+            speed:(NSNumber *)speed
+         altitude:(NSNumber *)altitude
+          bearing:(NSNumber *)bearing
+            state:(NSString *)state {
     
     self = [super init];
     

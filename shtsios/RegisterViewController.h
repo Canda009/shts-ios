@@ -37,6 +37,10 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *username;
 @property (weak, nonatomic) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet UITextField *vcode;
+
+@property (weak, nonatomic) IBOutlet UIButton *vcodeBtn;
+
 @property (weak, nonatomic) IBOutlet UITextField *passwordAgain;
 @property (weak, nonatomic) IBOutlet UITextField *name;
 
@@ -51,6 +55,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *iconLabel09;
 @property (weak, nonatomic) IBOutlet UILabel *iconLabel10;
 @property (weak, nonatomic) IBOutlet UILabel *iconLabel11;
+
+- (IBAction)sendCode:(id)sender;
 
 
 - (IBAction)selectClicked:(id)sender;

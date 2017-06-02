@@ -151,7 +151,7 @@
     //[dao create:record];
     
     
-    NSMutableArray *all =  [dao findAll];
+    NSMutableArray *all =  [dao findAll];  //查询全部的数据
     for (int i=0; i< [all count]; i++) {
         Record *myRecord = all[i];
         
@@ -159,7 +159,7 @@
         //NSLog(@"修改前%@,%@,%@,%@,%@",myRecord.startlatitude,myRecord.startlongitude,myRecord.recordstarttime,myRecord.stopnum,myRecord.datestring);
         [recordsArray addObject:myRecord];
     }
-    [self.tableView reloadData];
+    [self.tableView reloadData];  //重新加载视图
     //NSNumber *countNumber = [NSNumber numberWithUnsignedInteger:[recordsArray count]];
     
     //NSLog(@"the count is %@",[countNumber stringValue]);
@@ -207,7 +207,7 @@
     RecordItemCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     Record  *record = [recordsArray objectAtIndex:[indexPath row]];
     
-    NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
+    NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];  //格式化要显示的时间
     [dateformatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     //[dateformatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
     NSString * starttimestring =[dateformatter stringFromDate:record.recordstarttime];
@@ -219,7 +219,7 @@
     cell.avgspeed.text = [NSString stringWithFormat:@"平均速度:%@",record.avgsped.description];
     cell.stopnum.text = [NSString stringWithFormat:@"停留点数:%@",record.stopnum.description];
     
-    cell.iconLabel01.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+    cell.iconLabel01.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20]; //设置图标大小
     cell.iconLabel01.text = [NSString fontAwesomeIconStringForEnum:FALocationArrow];
     [cell.iconLabel01 setTextColor:[UIColor darkGrayColor]];
     

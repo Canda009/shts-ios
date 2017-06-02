@@ -87,6 +87,12 @@
     return 1;
 }
 
+-(NSInteger)selected:(NSString *)s{
+    NSUInteger index=[self.list indexOfObject:s];
+    return index;
+    
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 40;
 }
@@ -102,7 +108,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        cell.textLabel.font = [UIFont systemFontOfSize:12];
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
     }
     if ([self.imageList count] == [self.list count]) {
@@ -146,6 +152,7 @@
     [btnSender addSubview:imgView];
     [self myDelegate];
 }
+
 
 - (void) myDelegate {
     [self.delegate niDropDownDelegateMethod:self];

@@ -200,12 +200,30 @@
     
     
     
-    if([select01.titleLabel.text isEqualToString:@"选择"] || [select02.titleLabel.text isEqualToString:@"选择"] || [select03.titleLabel.text isEqualToString:@"选择"] || [select04.titleLabel.text isEqualToString:@"选择"]||[select05.titleLabel.text isEqualToString:@"选择"]){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"选择项不能为空！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    if([select01.titleLabel.text isEqualToString:@"选择"]
+       || [select02.titleLabel.text isEqualToString:@"选择"]
+       || [select03.titleLabel.text isEqualToString:@"选择"]
+       || [select04.titleLabel.text isEqualToString:@"选择"]
+       ||[select05.titleLabel.text isEqualToString:@"选择"]){
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                        message:@"选择项不能为空！"
+                                                       delegate:self
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil, nil];
         [alert show];
     }else{
         
-        StopPoint *stop = [[StopPoint alloc] initWithUser:username latitude:rLatitude longitude:rLongitude stoptime:[NSDate date] purpose:select01.titleLabel.text vehicle:select02.titleLabel.text companytype:select03.titleLabel.text companynum:select04.titleLabel.text building:select05.titleLabel.text isvalid:@"1"];
+        StopPoint *stop = [[StopPoint alloc] initWithUser:username
+                                                 latitude:rLatitude
+                                                longitude:rLongitude
+                                                 stoptime:[NSDate date]
+                                                  purpose:select01.titleLabel.text
+                                                  vehicle:select02.titleLabel.text
+                                              companytype:select03.titleLabel.text
+                                               companynum:select04.titleLabel.text
+                                                 building:select05.titleLabel.text
+                                                  isvalid:@"1"];
         StopDAO *dao = [StopDAO sharedManager];
         [dao create:stop];
         /*

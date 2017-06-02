@@ -58,13 +58,9 @@
     // Do any additional setup after loading the view, typically from a nib.
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordViewAction:) name:@"RecordViewNotification" object:nil];
  
-    [self initMapView];
+    [self initMapView];  //初始化地图
     _mapView.showsUserLocation = NO;
     //NSLog(@"thenameis-%@",receiveDate);
-
-    
-    
-   
     
 }
 
@@ -73,9 +69,6 @@
     //[[NSNotificationCenter defaultCenter] removeObserver:self];
     // Dispose of any resources that can be recreated.
 }
-
-
-
 
 -(MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id<MAOverlay>)overlay{
     if([overlay isKindOfClass:[MAMultiPolyline class]]){
@@ -89,6 +82,7 @@
     //NSLog(@"it's rendererForOverlay()");
     return nil;
 }
+
 -(UIColor *)getColorForSpeed:(float)speed{
     const float lowSpeedTh = 0.f;
     const float highSpeedTh = 10.5f;
@@ -193,6 +187,7 @@
     NSCalendar *resultCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     return [resultCalendar dateFromComponents:resultComps];
 }
+
 - (NSDate *)getCustomDateWithHour01:(NSInteger)hour withdata:(NSDate*)date
 {
     //获取当前时间

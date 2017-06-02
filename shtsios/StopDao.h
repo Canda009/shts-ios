@@ -31,6 +31,7 @@
 
 //按照主键查询数据方法
 -(NSMutableArray*) findByStartDate:(NSDate*)startDate endDate:(NSDate*)endDate;
+
 -(NSMutableArray*) findByLatitude:(NSNumber*)latitude;
 
 @end

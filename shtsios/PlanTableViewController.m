@@ -28,9 +28,9 @@
     //NSLog(@"the current cell == %ld",index.row);
     NSDictionary *planDict = [plansArray objectAtIndex:index.row];
     
-    NSString *joinPlanId = [planDict objectForKey:@"id"];
+    NSString *joinPlanId = [planDict objectForKey:@"id"];  //获取计划的编号
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSString *username = [userDefault objectForKey:@"username"];
+    NSString *username = [userDefault objectForKey:@"username"];  //获取用户名
     //NSLog(@"%@",username);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -42,18 +42,18 @@
     NSString *joinplanUrl = [SERVER_URL stringByAppendingString:action];
     
     // NSDictionary *loginDict = @{@"user.email":@"8888",@"user.password":@"8888",@"device":@"ios"};
-    [manager POST:joinplanUrl parameters:params progress:^(NSProgress *progress){
+    [manager POST:joinplanUrl parameters:params progress:^(NSProgress *progress){  //开始网络通信
         
-    } success:^(NSURLSessionDataTask *operation,id responseObject){
+    } success:^(NSURLSessionDataTask *operation,id responseObject){  //通信成功
        // NSLog(@"%@",responseObject);
         //NSLog(@"%@",[NSThread currentThread]);
         
         
         NSString *result = [responseObject objectForKey:@"result"];
-        if([result isEqualToString:@"success"]){
+        if([result isEqualToString:@"success"]){  //加入计划成功
             
             
-            [self performSegueWithIdentifier:@"JoinPlan" sender:nil];
+            [self performSegueWithIdentifier:@"JoinPlan" sender:nil];  //跳转到JoinPlan页面
             
         }
        

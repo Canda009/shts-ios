@@ -1,0 +1,608 @@
+//
+//  FamilyViewController.m
+//  shtsios
+//
+//  Created by cdj on 17/5/30.
+//  Copyright © 2017年 itiis. All rights reserved.
+//
+
+#import "FamilyViewController.h"
+#import "NIDropDown.h"
+#import "Constants.h"
+#import <AFHTTPSessionManager.h>
+@interface FamilyViewController ()
+
+@end
+
+@implementation FamilyViewController
+@synthesize uibtn01;
+@synthesize uibtn02;
+@synthesize uibtn03;
+@synthesize uibtn04;
+@synthesize uibtn05;
+@synthesize uibtn06;
+@synthesize uibtn07;
+@synthesize uibtn08;
+@synthesize uibtn09;
+@synthesize uibtn10;
+@synthesize uibtn11;
+@synthesize uibtn12;
+@synthesize uibtn13;
+@synthesize uibtn14;
+@synthesize uibtn15;
+@synthesize uibtn16;
+@synthesize uibtn17;
+@synthesize uibtn18;
+@synthesize familyNum;
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    uibtn01.layer.borderWidth = 1;
+    uibtn01.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn01.layer.cornerRadius = 5;
+    
+    uibtn02.layer.borderWidth = 1;
+    uibtn02.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn02.layer.cornerRadius = 5;
+    
+    uibtn03.layer.borderWidth = 1;
+    uibtn03.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn03.layer.cornerRadius = 5;
+    
+    uibtn04.layer.borderWidth = 1;
+    uibtn04.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn04.layer.cornerRadius = 5;
+    
+    uibtn05.layer.borderWidth = 1;
+    uibtn05.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn05.layer.cornerRadius = 5;
+    
+    uibtn06.layer.borderWidth = 1;
+    uibtn06.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn06.layer.cornerRadius = 5;
+    
+    uibtn07.layer.borderWidth = 1;
+    uibtn07.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn07.layer.cornerRadius = 5;
+    
+    uibtn08.layer.borderWidth = 1;
+    uibtn08.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn08.layer.cornerRadius = 5;
+    
+    uibtn09.layer.borderWidth = 1;
+    uibtn09.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn09.layer.cornerRadius = 5;
+    
+    uibtn10.layer.borderWidth = 1;
+    uibtn10.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn10.layer.cornerRadius = 5;
+    
+    uibtn11.layer.borderWidth = 1;
+    uibtn11.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn11.layer.cornerRadius = 5;
+    
+    uibtn12.layer.borderWidth = 1;
+    uibtn12.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn12.layer.cornerRadius = 5;
+    
+    uibtn13.layer.borderWidth = 1;
+    uibtn13.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn13.layer.cornerRadius = 5;
+    
+    uibtn14.layer.borderWidth = 1;
+    uibtn14.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn14.layer.cornerRadius = 5;
+    
+    uibtn15.layer.borderWidth = 1;
+    uibtn15.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn15.layer.cornerRadius = 5;
+    
+    uibtn16.layer.borderWidth = 1;
+    uibtn16.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn16.layer.cornerRadius = 5;
+    
+    uibtn17.layer.borderWidth = 1;
+    uibtn17.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn17.layer.cornerRadius = 5;
+    
+    uibtn18.layer.borderWidth = 1;
+    uibtn18.layer.borderColor = [[UIColor blackColor] CGColor];
+    uibtn18.layer.cornerRadius = 5;
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+- (IBAction)btn02:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7+",nil];
+    
+    if(dropDown02 == nil) {
+        CGFloat f = 280;
+        dropDown02 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        dropDown02.delegate = self;
+    }
+    else {
+        [dropDown02 hideDropDown:sender];
+        //[self rel];
+        dropDown02 = nil;
+    }
+}
+
+- (IBAction)btn01:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"10万元以下", @"10-15万元", @"15-20万元", @"20万元以上",nil];
+    
+    if(dropDown01 == nil) {
+        CGFloat f = 160;
+        dropDown01 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        dropDown01.delegate = self;
+    }
+    else {
+        [dropDown01 hideDropDown:sender];
+        //[self rel];
+        dropDown01 = nil;
+    }
+}
+
+- (IBAction)btn03:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7+",nil];
+    
+    if(dropDown03 == nil) {
+        CGFloat f = 280;
+        dropDown03 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        dropDown03.delegate = self;
+    }
+    else {
+        [dropDown03 hideDropDown:sender];
+        //[self rel];
+        dropDown03 = nil;
+    }
+}
+
+- (IBAction)btn04:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7+",nil];
+    
+    if(dropDown04 == nil) {
+        CGFloat f = 280;
+        dropDown04 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        dropDown04.delegate = self;
+    }
+    else {
+        [dropDown04 hideDropDown:sender];
+        //[self rel];
+        dropDown04 = nil;
+    }
+}
+
+- (IBAction)btn05:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"0",@"1", @"2", @"3", @"4",nil];
+    
+    if(dropDown05 == nil) {
+        CGFloat f = 200;
+        dropDown05 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        dropDown05.delegate = self;
+    }
+    else {
+        [dropDown05 hideDropDown:sender];
+        //[self rel];
+        dropDown05 = nil;
+    }
+}
+
+- (IBAction)btn06:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"0",@"1", @"2", @"3",nil];
+    
+    if(dropDown06 == nil) {
+        CGFloat f = 160;
+        dropDown06 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        dropDown06.delegate = self;
+    }
+    else {
+        [dropDown06 hideDropDown:sender];
+        //[self rel];
+        dropDown06 = nil;
+    }
+}
+
+- (IBAction)btn07:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"0",@"1", @"2", @"3", @"4",nil];
+    
+    if(dropDown07 == nil) {
+        CGFloat f = 200;
+        dropDown07 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        dropDown07.delegate = self;
+    }
+    else {
+        [dropDown07 hideDropDown:sender];
+        //[self rel];
+        dropDown07 = nil;
+    }
+}
+
+- (IBAction)btn08:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"0",@"1", @"2", @"3", @"4",nil];
+    
+    if(dropDown08 == nil) {
+        CGFloat f = 200;
+        dropDown08 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        dropDown08.delegate = self;
+    }
+    else {
+        [dropDown08 hideDropDown:sender];
+        //[self rel];
+        dropDown08 = nil;
+    }
+}
+
+- (IBAction)btn09:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"0",@"1", @"2", @"3", @"4",nil];
+    
+    if(dropDown09 == nil) {
+        CGFloat f = 200;
+        dropDown09 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        dropDown09.delegate = self;
+    }
+    else {
+        [dropDown09 hideDropDown:sender];
+        //[self rel];
+        dropDown09 = nil;
+    }
+}
+
+- (IBAction)btn10:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"0",@"1", @"2", @"3", @"4",nil];
+    
+    if(dropDown10 == nil) {
+        CGFloat f = 200;
+        dropDown10 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        dropDown10.delegate = self;
+    }
+    else {
+        [dropDown10 hideDropDown:sender];
+        //[self rel];
+        dropDown10 = nil;
+    }
+}
+
+- (IBAction)btn11:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"0",@"1", @"2", @"3+",nil];
+    
+    if(dropDown11 == nil) {
+        CGFloat f = 160;
+        dropDown11 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        dropDown11.delegate = self;
+    }
+    else {
+        [dropDown11 hideDropDown:sender];
+        //[self rel];
+        dropDown11 = nil;
+    }
+}
+
+- (IBAction)btn12:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"0",@"1", @"2", @"3+",nil];
+    
+    if(dropDown12 == nil) {
+        CGFloat f = 160;
+        dropDown12 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"up"];
+        dropDown12.delegate = self;
+    }
+    else {
+        [dropDown12 hideDropDown:sender];
+        //[self rel];
+        dropDown12 = nil;
+    }
+}
+
+- (IBAction)btn13:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"0",@"1", @"2", @"3+",nil];
+    
+    if(dropDown13 == nil) {
+        CGFloat f = 160;
+        dropDown13 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"up"];
+        dropDown13.delegate = self;
+    }
+    else {
+        [dropDown13 hideDropDown:sender];
+        //[self rel];
+        dropDown13 = nil;
+    }
+}
+
+- (IBAction)btn14:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"0",@"1", @"2", @"3",@"4+",nil];
+    
+    if(dropDown14 == nil) {
+        CGFloat f = 200;
+        dropDown14 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"up"];
+        dropDown14.delegate = self;
+    }
+    else {
+        [dropDown14 hideDropDown:sender];
+        //[self rel];
+        dropDown14 = nil;
+    }
+}
+
+- (IBAction)btn15:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"0",@"1", @"2", @"3",@"4+",nil];
+    
+    if(dropDown15 == nil) {
+        CGFloat f = 160;
+        dropDown15 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"up"];
+        dropDown15.delegate = self;
+    }
+    else {
+        [dropDown15 hideDropDown:sender];
+        //[self rel];
+        dropDown15 = nil;
+    }
+}
+
+- (IBAction)btn16:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"0",@"1", @"2", @"3",@"4+",nil];
+    
+    if(dropDown16 == nil) {
+        CGFloat f = 200;
+        dropDown16 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"up"];
+        dropDown16.delegate = self;
+    }
+    else {
+        [dropDown16 hideDropDown:sender];
+        //[self rel];
+        dropDown16 = nil;
+    }
+}
+
+- (IBAction)btn17:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"0",@"1", @"2", @"3",@"4+",nil];
+    
+    if(dropDown17 == nil) {
+        CGFloat f = 200;
+        dropDown17 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"up"];
+        dropDown17.delegate = self;
+    }
+    else {
+        [dropDown17 hideDropDown:sender];
+        //[self rel];
+        dropDown17 = nil;
+    }
+}
+
+- (IBAction)btn18:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"无车位",@"居住小区内产权车位", @"居住小区内租赁车位", @"居住小区外租赁车位",nil];
+    
+    if(dropDown18 == nil) {
+        CGFloat f = 160;
+        dropDown18 = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"up"];
+        dropDown18.delegate = self;
+    }
+    else {
+        [dropDown18 hideDropDown:sender];
+        //[self rel];
+        dropDown18 = nil;
+    }
+    
+}
+
+
+- (IBAction)submit:(id)sender {
+    
+    if([uibtn01.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn02.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn03.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn04.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn05.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn06.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn07.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn08.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn09.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn10.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn11.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn12.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn13.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn14.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn15.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn16.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn17.titleLabel.text isEqualToString:@"选择"]
+       || [uibtn18.titleLabel.text isEqualToString:@"选择"]
+       || familyNum.text.length==0
+       ){
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                        message:@"选择项不能为空！"
+                                                       delegate:self
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else{
+        /*
+        NSLog(@"%@",[NSString stringWithFormat:@"%d",[dropDown01 selected:uibtn01.titleLabel.text]]);
+        NSLog(@"%@",[NSString stringWithFormat:@"%d",[dropDown02 selected:uibtn02.titleLabel.text]]);
+        NSLog(@"%@",[NSString stringWithFormat:@"%d",[dropDown03 selected:uibtn03.titleLabel.text]]);
+        NSLog(@"%@",[NSString stringWithFormat:@"%d",[dropDown04 selected:uibtn04.titleLabel.text]]);
+        NSLog(@"%@",[NSString stringWithFormat:@"%d",[dropDown05 selected:uibtn05.titleLabel.text]]);
+        NSLog(@"%@",[NSString stringWithFormat:@"%d",[dropDown06 selected:uibtn06.titleLabel.text]]);
+        NSLog(@"%@",[NSString stringWithFormat:@"%d",[dropDown07 selected:uibtn07.titleLabel.text]]);
+        NSLog(@"%@",[NSString stringWithFormat:@"%d",[dropDown08 selected:uibtn08.titleLabel.text]]);
+        NSLog(@"%@",[NSString stringWithFormat:@"%d",[dropDown09 selected:uibtn09.titleLabel.text]]);
+        NSLog(@"%@",[NSString stringWithFormat:@"%d",[dropDown10 selected:uibtn10.titleLabel.text]]);
+        NSLog(@"%@",[NSString stringWithFormat:@"%d",[dropDown11 selected:uibtn11.titleLabel.text]]);
+        NSLog(@"%@",[NSString stringWithFormat:@"%d",[dropDown12 selected:uibtn12.titleLabel.text]]);
+        NSLog(@"%@",[NSString stringWithFormat:@"%d",[dropDown13 selected:uibtn13.titleLabel.text]]);
+        NSLog(@"%@",[NSString stringWithFormat:@"%d",[dropDown14 selected:uibtn14.titleLabel.text]]);
+        NSLog(@"%@",[NSString stringWithFormat:@"%d",[dropDown15 selected:uibtn15.titleLabel.text]]);
+        NSLog(@"%@",[NSString stringWithFormat:@"%d",[dropDown16 selected:uibtn16.titleLabel.text]]);
+        */
+        
+        
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];  //填写信息存入参数列表
+        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];  //从本地数据取得用户名
+        
+        NSString *username = [userDefault objectForKey:@"username"];
+        params[@"user_email"]= username;
+        params[@"familyNO"]= familyNum.text;
+        params[@"familyIncomeYear"]= [NSString stringWithFormat:@"%d",[dropDown01 selected:uibtn01.titleLabel.text]];
+        params[@"familyNumbers"]= [NSString stringWithFormat:@"%d",[dropDown02 selected:uibtn02.titleLabel.text]];
+        params[@"familyLocalNumbers"]= [NSString stringWithFormat:@"%d",[dropDown03 selected:uibtn03.titleLabel.text]];
+        params[@"familyOtherNumbers"]= [NSString stringWithFormat:@"%d",[dropDown04 selected:uibtn04.titleLabel.text]];
+        params[@"familyOldNumbers"]= [NSString stringWithFormat:@"%d",[dropDown05 selected:uibtn05.titleLabel.text]];
+        params[@"familyKidNumbers"]= [NSString stringWithFormat:@"%d",[dropDown06 selected:uibtn06.titleLabel.text]];
+        params[@"familyRetireNumbers"]= [NSString stringWithFormat:@"%d",[dropDown07 selected:uibtn07.titleLabel.text]];
+        params[@"familyStudentNumbers"]= [NSString stringWithFormat:@"%d",[dropDown08 selected:uibtn08.titleLabel.text]];
+        params[@"familyWorkerNumbers"]= [NSString stringWithFormat:@"%d",[dropDown09 selected:uibtn09.titleLabel.text]];
+        params[@"familyDriverNumbers"]= [NSString stringWithFormat:@"%d",[dropDown10 selected:uibtn10.titleLabel.text]];
+        params[@"familyBikeNumbers"]= [NSString stringWithFormat:@"%d",[dropDown11 selected:uibtn11.titleLabel.text]];
+        params[@"familyMotorNumbers"]= [NSString stringWithFormat:@"%d",[dropDown12 selected:uibtn12.titleLabel.text]];
+        params[@"familyelEctrombiles"]= [NSString stringWithFormat:@"%d",[dropDown13 selected:uibtn13.titleLabel.text]];
+        params[@"familyCarNumbers"]= [NSString stringWithFormat:@"%d",[dropDown14 selected:uibtn14.titleLabel.text]];
+        params[@"localLicences"]= [NSString stringWithFormat:@"%d",[dropDown15 selected:uibtn15.titleLabel.text]];
+        params[@"otherLicences"]= [NSString stringWithFormat:@"%d",[dropDown16 selected:uibtn16.titleLabel.text]];
+        params[@"waidiLicences"]= [NSString stringWithFormat:@"%d",[dropDown17 selected:uibtn17.titleLabel.text]];
+        params[@"parkPlace"]= [NSString stringWithFormat:@"%d",[dropDown18 selected:uibtn18.titleLabel.text]];
+        
+        
+        
+        NSString *action = @"/new-shts/questionSurvey.do?action=questionSurvey01";
+        NSString *loginUrl = [SERVER_URL stringByAppendingString:action];
+        //NSLog(@"%@",loginUrl);
+        // NSDictionary *loginDict = @{@"user.email":@"8888",@"user.password":@"8888",@"device":@"ios"};
+        [manager POST:loginUrl parameters:params progress:^(NSProgress *progress){
+            
+        } success:^(NSURLSessionDataTask *operation,id responseObject){
+            //NSLog(@"%@",responseObject);
+            //NSLog(@"%@",[NSThread currentThread]);
+            
+            
+            NSString *result = [responseObject objectForKey:@"result"];
+            if([result isEqualToString:@"success"]){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                message:@"提交成功！"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"确定"
+                                                      otherButtonTitles:nil, nil];
+                [alert show];
+                [self performSegueWithIdentifier:@"FamilyTwo" sender:nil];
+                
+            }
+            
+            else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                message:@"提交失败！"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"确定"
+                                                      otherButtonTitles:nil, nil];
+                [alert show];
+                //  NSLog(@"reg failed");
+                //login failed  do  nothing;
+            }
+            
+        } failure:^(NSURLSessionDataTask *operation,NSError *error){
+            //NSLog(@"%@",error);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"提交失败,网络故障！"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil, nil];
+            [alert show];
+            //NSLog(@"reg failed");
+        }];
+        
+        
+    }
+    
+    
+    
+}
+
+
+- (void) niDropDownDelegateMethod:(NIDropDown *)sender{
+    sender = nil;
+    //[self rel];
+    //NSLog(@"%@", btnSelect.titleLabel.text);
+    
+}
+
+-(void)rel{
+    //    [dropDown release];
+    dropDown01 = nil;
+    dropDown02 = nil;
+    dropDown03 = nil;
+    dropDown04 = nil;
+    dropDown05 = nil;
+    dropDown06 = nil;
+    dropDown07 = nil;
+    dropDown08 = nil;
+    dropDown09 = nil;
+    dropDown10 = nil;
+    dropDown11 = nil;
+    dropDown12 = nil;
+    dropDown13 = nil;
+    dropDown14 = nil;
+    dropDown15 = nil;
+    dropDown16 = nil;
+    dropDown17 = nil;
+    dropDown18 = nil;
+    
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    //[[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    //[[self findFirstResponderBeneathView:self] resignFirstResponder];
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (UIView*)findFirstResponderBeneathView:(UIView*)view
+{
+    // Search recursively for first responder
+    for ( UIView *childView in view.subviews ) {
+        if ( [childView respondsToSelector:@selector(isFirstResponder)] && [childView isFirstResponder] )
+            return childView;
+        UIView *result = [self findFirstResponderBeneathView:childView];
+        if ( result )
+            return result;
+    }
+    return nil;
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+@end

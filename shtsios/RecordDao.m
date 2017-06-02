@@ -30,7 +30,8 @@ static RecordDAO *sharedManager = nil;
 {
     NSManagedObjectContext *cxt = [self managedObjectContext];
     
-    RecordManagedObject *record = [NSEntityDescription insertNewObjectForEntityForName:@"Record" inManagedObjectContext:cxt];
+    RecordManagedObject *record = [NSEntityDescription insertNewObjectForEntityForName:@"Record"
+                                                                inManagedObjectContext:cxt];
     [record setValue: model.user forKey:@"user"];
     [record setValue: model.datestring forKey:@"datestring"];
     [record setValue: model.startlatitude forKey:@"startlatitude"];
@@ -74,10 +75,10 @@ static RecordDAO *sharedManager = nil;
        
         RecordManagedObject *record = [listData lastObject];
         //NSLog(@"查询到数据:%@, %@", record.recordendtime, model.recordendtime);
-        record.recordendtime = model.recordendtime;
+        record.recordendtime = model.recordendtime;  //修改纪录的结束时间
         
         error = nil;
-        if ([cxt hasChanges] && ![cxt save:&error]){
+        if ([cxt hasChanges] && ![cxt save:&error]){  //若内容有变化并且没有错误抛出则表明修改成功
             //NSLog(@"修改数据失败:%@, %@", error, [error userInfo]);
             return -1;
         }
@@ -106,7 +107,13 @@ static RecordDAO *sharedManager = nil;
     NSMutableArray *resListData = [[NSMutableArray alloc] init];
     
     for (RecordManagedObject *mo in listData) {
-        Record *record = [[Record alloc] initWithUser:mo.user datestring:mo.datestring startlatitude:mo.startlatitude startlongitude:mo.startlongitude recordstarttime:mo.recordstarttime pointnum:mo.pointnum stopnum:mo.stopnum];
+        Record *record = [[Record alloc] initWithUser:mo.user
+                                           datestring:mo.datestring
+                                        startlatitude:mo.startlatitude
+                                       startlongitude:mo.startlongitude
+                                      recordstarttime:mo.recordstarttime
+                                             pointnum:mo.pointnum
+                                              stopnum:mo.stopnum];
         record.recordendtime = mo.recordendtime;
         record.avgsped = mo.avgsped;
         record.distance = mo.distance;

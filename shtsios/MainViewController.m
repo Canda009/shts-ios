@@ -11,7 +11,7 @@
 
 @interface MainViewController ()
 
-@property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
+@property (weak, nonatomic) IBOutlet UIButton *phoneBtn;  //登录界面“手机号登录”按键
 //@property (strong, nonatomic)  UIButton *star;
 //@property (weak, nonatomic) IBOutlet UIButton *emailBtn;
 
@@ -79,20 +79,21 @@
 }
  */
 -(void)viewDidAppear:(BOOL)animated{
+    //获取本地信息，判断用户是否已经登陆并加入到计划中
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSString *username = [userDefault objectForKey:@"username"];
     NSString *hadjoin = [userDefault objectForKey:@"hadjoin"];
    
     
-     if(username != nil){
+     if(username != nil){  //用户名存在表明之前已经登陆了
         // [self performSegueWithIdentifier:@"HadLogin" sender:nil];
      //NSLog(@"the username is %@",username);
          
-         if ([hadjoin isEqualToString:@"yes"]) {
+         if ([hadjoin isEqualToString:@"yes"]) {  //已经登陆并且有加入计划，跳转到LoginAndJoin
              [self performSegueWithIdentifier:@"LoginAndJoin" sender:nil];
          }
-         else {
-             [self performSegueWithIdentifier:@"HadLogin" sender:nil];
+         else {  //只是登陆但没加入计划，跳转到HadLogin
+             [self performSegueWithIdentifier:@"LoginedFamilyOne" sender:nil];
          }
          
      }

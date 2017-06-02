@@ -26,6 +26,7 @@
 		467FC3631C7DD8CC00698EE6 /* PlanItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 467FC3621C7DD8CC00698EE6 /* PlanItemCell.m */; };
 		467FC3671C7DE96700698EE6 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = 467FC3661C7DE96700698EE6 /* Plan.m */; };
 		468894461CF59E18002900D4 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 468894451CF59E18002900D4 /* HistoryViewController.m */; };
+		468F5A561EDD7AD900C5CCC9 /* FamilyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 468F5A551EDD7AD900C5CCC9 /* FamilyViewController.m */; };
 		46948E3F1C843AAB00F214D5 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46948E3E1C843AAB00F214D5 /* SettingViewController.m */; };
 		46948E421C843D6A00F214D5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46948E411C843D6A00F214D5 /* HomeViewController.m */; };
 		46948E451C84420200F214D5 /* RecordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46948E441C84420200F214D5 /* RecordTableViewController.m */; };
@@ -44,6 +45,8 @@
 		46A6954A1D81865000C18584 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A695471D81865000C18584 /* CustomAnnotationView.m */; };
 		46A6954B1D81865000C18584 /* CustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A695491D81865000C18584 /* CustomCalloutView.m */; };
 		46A8D9161C79F9D7008E5C57 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A8D9151C79F9D7008E5C57 /* MainViewController.m */; };
+		46B5DDC21EDF049C0073408A /* FamilyTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B5DDC11EDF049C0073408A /* FamilyTwoViewController.m */; };
+		46B5DDC51EE0310E0073408A /* FamilyThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B5DDC41EE0310E0073408A /* FamilyThreeViewController.m */; };
 		46B6514C1C7AFD3700D4267A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B6514B1C7AFD3700D4267A /* LoginViewController.m */; };
 		46B724321D19779300BA3E0B /* HistoryNaviViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B724311D19779300BA3E0B /* HistoryNaviViewController.m */; };
 		46B724371D1B84E600BA3E0B /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B724341D1B84E500BA3E0B /* NSString+FontAwesome.m */; };
@@ -127,6 +130,8 @@
 		467FC3661C7DE96700698EE6 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
 		468894441CF59E18002900D4 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		468894451CF59E18002900D4 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		468F5A541EDD7AD900C5CCC9 /* FamilyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyViewController.h; sourceTree = "<group>"; };
+		468F5A551EDD7AD900C5CCC9 /* FamilyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyViewController.m; sourceTree = "<group>"; };
 		46948E3D1C843AAB00F214D5 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		46948E3E1C843AAB00F214D5 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		46948E401C843D6A00F214D5 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -162,6 +167,10 @@
 		46A695491D81865000C18584 /* CustomCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCalloutView.m; sourceTree = "<group>"; };
 		46A8D9141C79F9D7008E5C57 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		46A8D9151C79F9D7008E5C57 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		46B5DDC01EDF049C0073408A /* FamilyTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyTwoViewController.h; sourceTree = "<group>"; };
+		46B5DDC11EDF049C0073408A /* FamilyTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyTwoViewController.m; sourceTree = "<group>"; };
+		46B5DDC31EE0310E0073408A /* FamilyThreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyThreeViewController.h; sourceTree = "<group>"; };
+		46B5DDC41EE0310E0073408A /* FamilyThreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyThreeViewController.m; sourceTree = "<group>"; };
 		46B6514A1C7AFD3700D4267A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		46B6514B1C7AFD3700D4267A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		46B724301D19779300BA3E0B /* HistoryNaviViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryNaviViewController.h; sourceTree = "<group>"; };
@@ -288,6 +297,8 @@
 				460E50FD1C7360A00085C91D /* ViewController.h */,
 				460E50FE1C7360A00085C91D /* ViewController.m */,
 				460E51001C7360A00085C91D /* Main.storyboard */,
+				46B5DDC01EDF049C0073408A /* FamilyTwoViewController.h */,
+				46B5DDC11EDF049C0073408A /* FamilyTwoViewController.m */,
 				46A8D9141C79F9D7008E5C57 /* MainViewController.h */,
 				46A8D9151C79F9D7008E5C57 /* MainViewController.m */,
 				460E51031C7360A00085C91D /* Assets.xcassets */,
@@ -323,6 +334,10 @@
 				46B724311D19779300BA3E0B /* HistoryNaviViewController.m */,
 				46B7BD5B1D4DFCE200359892 /* SurveyViewController.h */,
 				46B7BD5C1D4DFCE200359892 /* SurveyViewController.m */,
+				468F5A541EDD7AD900C5CCC9 /* FamilyViewController.h */,
+				468F5A551EDD7AD900C5CCC9 /* FamilyViewController.m */,
+				46B5DDC31EE0310E0073408A /* FamilyThreeViewController.h */,
+				46B5DDC41EE0310E0073408A /* FamilyThreeViewController.m */,
 			);
 			path = shtsios;
 			sourceTree = "<group>";
@@ -649,6 +664,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				468F5A561EDD7AD900C5CCC9 /* FamilyViewController.m in Sources */,
 				469753FF1CF341D9003670AD /* TraceManagedObject+CoreDataProperties.m in Sources */,
 				46B7BD5D1D4DFCE200359892 /* SurveyViewController.m in Sources */,
 				46A6954A1D81865000C18584 /* CustomAnnotationView.m in Sources */,
@@ -663,6 +679,7 @@
 				461177F91D8C11AD00231FB0 /* Survey.m in Sources */,
 				469754031CF342B5003670AD /* CoreDataDao.m in Sources */,
 				46948E481C84440500F214D5 /* HomeNaviViewController.m in Sources */,
+				46B5DDC51EE0310E0073408A /* FamilyThreeViewController.m in Sources */,
 				469754001CF341D9003670AD /* TraceManagedObject.m in Sources */,
 				469754151CF45C45003670AD /* Record.m in Sources */,
 				4697540E1CF45BB1003670AD /* RecordManagedObject+CoreDataProperties.m in Sources */,
@@ -678,6 +695,7 @@
 				468894461CF59E18002900D4 /* HistoryViewController.m in Sources */,
 				46A6954B1D81865000C18584 /* CustomCalloutView.m in Sources */,
 				469754061CF3441F003670AD /* TraceDao.m in Sources */,
+				46B5DDC21EDF049C0073408A /* FamilyTwoViewController.m in Sources */,
 				469754091CF34457003670AD /* Trace.m in Sources */,
 				46948E3F1C843AAB00F214D5 /* SettingViewController.m in Sources */,
 				469754181CF46EE9003670AD /* RecordItemCell.m in Sources */,

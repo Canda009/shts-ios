@@ -25,6 +25,8 @@
 @synthesize btnSelect5;
 @synthesize btnSelect6;
 @synthesize username;
+@synthesize vcode;
+@synthesize vcodeBtn;
 @synthesize password;
 @synthesize passwordAgain;
 @synthesize name;
@@ -134,13 +136,116 @@
 }
 */
 
+- (IBAction)sendCode:(id)sender {
+    if ([self validateMobile:username.text]) {
+        
+        [self.vcodeBtn setTitle:@"60S" forState:UIControlStateNormal];
+        [self.vcodeBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        __block int timeout=59; //倒计时时间
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+        dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+        dispatch_source_set_event_handler(_timer, ^{
+            if(timeout<=0){ //倒计时结束，关闭
+                dispatch_source_cancel(_timer);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    //设置界面的按钮显示 根据自己需求设置
+                    [vcodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+                    vcodeBtn.userInteractionEnabled = YES;
+                });
+            }else{
+                int seconds = timeout % 60;
+                NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    //设置界面的按钮显示 根据自己需求设置
+                    //NSLog(@"____%@",strTime);
+                    [UIView beginAnimations:nil context:nil];
+                    [UIView setAnimationDuration:1];
+                    [vcodeBtn setTitle:[NSString stringWithFormat:@"%@",strTime] forState:UIControlStateNormal];
+                    [vcodeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                    [UIView commitAnimations];
+                    vcodeBtn.userInteractionEnabled = NO;
+                });
+                timeout--;
+            }
+        });
+        dispatch_resume(_timer);
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        
+        
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];  //填写信息存入参数列表
+        params[@"user_email"]=username.text;
+        //params[@"device"]=@"ios";
+        
+        NSString *action = @"/new-shts/getCheckCode";
+        NSString *codeUrl = [SERVER_URL stringByAppendingString:action];
+        //NSLog(@"%@",loginUrl);
+        // NSDictionary *loginDict = @{@"user.email":@"8888",@"user.password":@"8888",@"device":@"ios"};
+        [manager POST:codeUrl parameters:params progress:^(NSProgress *progress){
+            
+        } success:^(NSURLSessionDataTask *operation,id responseObject){
+            //NSLog(@"%@",responseObject);
+            //NSLog(@"%@",[NSThread currentThread]);
+            
+            
+            NSString *result = [responseObject objectForKey:@"result"];
+            if([result isEqualToString:@"success"]){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                message:@"短信已发送！"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"确定"
+                                                      otherButtonTitles:nil, nil];
+                [alert show];
+                
+                
+                
+            }
+            
+            else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                message:@"发送失败！"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"确定"
+                                                      otherButtonTitles:nil, nil];
+                [alert show];
+                //  NSLog(@"reg failed");
+                //login failed  do  nothing;
+            }
+            
+        } failure:^(NSURLSessionDataTask *operation,NSError *error){
+            //NSLog(@"%@",error);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"发送错误！"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil, nil];
+            [alert show];
+            //NSLog(@"reg failed");
+        }];
+
+        
+        
+        
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                        message:@"请输入正确的11位手机号"
+                                                       delegate:self
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
+    
+}
+
 - (IBAction)selectClicked:(id)sender {
     NSArray * arr = [[NSArray alloc] init];
     arr = [NSArray arrayWithObjects:@"男", @"女", nil];
     //NSArray * arrImage = [[NSArray alloc] init];
     //arrImage = [NSArray arrayWithObjects:[UIImage imageNamed:@"apple.png"], [UIImage imageNamed:@"apple2.png"], [UIImage imageNamed:@"apple.png"], [UIImage imageNamed:@"apple2.png"], [UIImage imageNamed:@"apple.png"], [UIImage imageNamed:@"apple2.png"], [UIImage imageNamed:@"apple.png"], [UIImage imageNamed:@"apple2.png"], [UIImage imageNamed:@"apple.png"], [UIImage imageNamed:@"apple2.png"], nil];
     if(dropDown == nil) {
-        CGFloat f = 80;
+        CGFloat f = 80;  //该值的设定与下拉列表的选项个数有关，为40*个数
         dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
         dropDown.delegate = self;
     }
@@ -235,7 +340,7 @@
 */
     
     
-    if([btnSelect4.titleLabel.text isEqualToString:@"选择"]){
+    if([btnSelect4.titleLabel.text isEqualToString:@"选择"]){  //上面一个选择列表没有选择就弹窗警告
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"行业大类不能为空！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
     }else{
@@ -287,41 +392,60 @@
 }
 
 
-- (IBAction)sumbitClicked:(id)sender {
-    if(username.text.length==0 || password.text.length==0 || passwordAgain.text.length==0 || name.text.length==0 ){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"输入不能为空！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+- (IBAction)sumbitClicked:(id)sender {  //提交按钮响应方法
+    if(username.text.length==0
+       || password.text.length==0
+       || passwordAgain.text.length==0
+       || name.text.length==0 ){
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                        message:@"输入不能为空！"
+                                                       delegate:self
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil, nil];
         [alert show];
         
     }
     else {
-        if([self validateMobile:username.text]){
-            if([btnSelect.titleLabel.text isEqualToString:@"选择"] || [btnSelect1.titleLabel.text isEqualToString:@"选择"] || [btnSelect2.titleLabel.text isEqualToString:@"选择"] || [btnSelect3.titleLabel.text isEqualToString:@"选择"] || [btnSelect4.titleLabel.text isEqualToString:@"选择"]){
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"选择项不能为空！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        if([self validateMobile:username.text]){  //先校验输入的手机号格式是否正确再判断下面的选择项是否为空
+            
+            if([btnSelect.titleLabel.text isEqualToString:@"选择"]
+               || [btnSelect1.titleLabel.text isEqualToString:@"选择"]
+               || [btnSelect2.titleLabel.text isEqualToString:@"选择"]
+               || [btnSelect3.titleLabel.text isEqualToString:@"选择"]
+               || [btnSelect4.titleLabel.text isEqualToString:@"选择"]){
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                message:@"选择项不能为空！"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"确定"
+                                                      otherButtonTitles:nil, nil];
                 [alert show];
             }
             else{
-                if( ![password.text isEqualToString:passwordAgain.text ]){
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"两次输入的密码不一致！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                if( ![password.text isEqualToString:passwordAgain.text ]){  //判断两次输入的密码是否一致
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                    message:@"两次输入的密码不一致！"
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"确定"
+                                                          otherButtonTitles:nil, nil];
                     [alert show];
                 }
                 else{
-                    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-                    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-                    params[@"user.email"]=username.text;
-                    params[@"user.password"]=password.text;
-                    params[@"user.username"]=name.text;
-                    params[@"user.sex"]=btnSelect.titleLabel.text;
-                    params[@"user.ageRange"]=btnSelect1.titleLabel.text;
-                    params[@"user.education"]=btnSelect2.titleLabel.text;
-                    params[@"user.workType"]=btnSelect3.titleLabel.text;
-                    params[@"user.industry"]=btnSelect4.titleLabel.text;
-                    params[@"device"]=@"ios";
                     
-                    NSString *action = @"/new-shts/signup.do";
-                    NSString *loginUrl = [SERVER_URL stringByAppendingString:action];
+                    AFHTTPSessionManager *manager01 = [AFHTTPSessionManager manager];
+                    
+                    
+                    NSMutableDictionary *params01 = [NSMutableDictionary dictionary];  //填写信息存入参数列表
+                    params01[@"user_email"]=username.text;
+                    params01[@"check_code"]=vcode.text;
+                    //params[@"device"]=@"ios";
+                    
+                    NSString *action01 = @"/new-shts/checkCode";
+                    NSString *codeUrl01 = [SERVER_URL stringByAppendingString:action01];
                     //NSLog(@"%@",loginUrl);
                     // NSDictionary *loginDict = @{@"user.email":@"8888",@"user.password":@"8888",@"device":@"ios"};
-                    [manager POST:loginUrl parameters:params progress:^(NSProgress *progress){
+                    [manager01 POST:codeUrl01 parameters:params01 progress:^(NSProgress *progress){
                         
                     } success:^(NSURLSessionDataTask *operation,id responseObject){
                         //NSLog(@"%@",responseObject);
@@ -330,36 +454,110 @@
                         
                         NSString *result = [responseObject objectForKey:@"result"];
                         if([result isEqualToString:@"success"]){
-                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                            [alert show];
-                            [self dismissViewControllerAnimated:YES completion:^{
-                                NSDictionary *dataDict = [NSDictionary dictionaryWithObject:self.username.text forKey:@"username"];
-                                [[NSNotificationCenter defaultCenter] postNotificationName:@"RegisterCompletionNotification" object:nil userInfo:dataDict];
+                           
+                            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+                            NSMutableDictionary *params = [NSMutableDictionary dictionary];  //填写信息存入参数列表
+                            params[@"user.email"]=username.text;
+                            params[@"user.password"]=password.text;
+                            params[@"user.username"]=name.text;
+                            params[@"user.sex"]=btnSelect.titleLabel.text;
+                            params[@"user.ageRange"]=btnSelect1.titleLabel.text;
+                            params[@"user.education"]=btnSelect2.titleLabel.text;
+                            params[@"user.personIncome"]=btnSelect3.titleLabel.text;
+                            params[@"user.industry"]=btnSelect4.titleLabel.text;
+                            params[@"user.hangye"]=btnSelect5.titleLabel.text;
+                            params[@"user.career"]=btnSelect6.titleLabel.text;
+                            params[@"device"]=@"ios";
+                            
+                            NSString *action = @"/new-shts/signup.do";
+                            NSString *loginUrl = [SERVER_URL stringByAppendingString:action];
+                            //NSLog(@"%@",loginUrl);
+                            // NSDictionary *loginDict = @{@"user.email":@"8888",@"user.password":@"8888",@"device":@"ios"};
+                            [manager POST:loginUrl parameters:params progress:^(NSProgress *progress){
+                                
+                            } success:^(NSURLSessionDataTask *operation,id responseObject){
+                                //NSLog(@"%@",responseObject);
+                                //NSLog(@"%@",[NSThread currentThread]);
+                                
+                                
+                                NSString *result = [responseObject objectForKey:@"result"];
+                                if([result isEqualToString:@"success"]){
+                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                                    message:@"注册成功！"
+                                                                                   delegate:self
+                                                                          cancelButtonTitle:@"确定"
+                                                                          otherButtonTitles:nil, nil];
+                                    [alert show];
+                                    
+                                    [self dismissViewControllerAnimated:YES completion:^{
+                                        NSDictionary *dataDict = [NSDictionary dictionaryWithObject:self.username.text forKey:@"username"];
+                                        [[NSNotificationCenter defaultCenter] postNotificationName:@"RegisterCompletionNotification" object:nil userInfo:dataDict];
+                                    }];
+                                    // NSLog(@"reg successed");
+                                    
+                                }
+                                
+                                else{
+                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                                    message:@"注册失败,账号已注册！"
+                                                                                   delegate:self
+                                                                          cancelButtonTitle:@"确定"
+                                                                          otherButtonTitles:nil, nil];
+                                    [alert show];
+                                    //  NSLog(@"reg failed");
+                                    //login failed  do  nothing;
+                                }
+                                
+                            } failure:^(NSURLSessionDataTask *operation,NSError *error){
+                                //NSLog(@"%@",error);
+                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                                message:@"注册失败,网络故障！"
+                                                                               delegate:self
+                                                                      cancelButtonTitle:@"确定"
+                                                                      otherButtonTitles:nil, nil];
+                                [alert show];
+                                //NSLog(@"reg failed");
                             }];
-                           // NSLog(@"reg successed");
+                            
                             
                         }
-                      
+                        
                         else{
-                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败,账号已注册！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                            message:@"短信验证失败！"
+                                                                           delegate:self
+                                                                  cancelButtonTitle:@"确定"
+                                                                  otherButtonTitles:nil, nil];
                             [alert show];
-                           //  NSLog(@"reg failed");
+                            //  NSLog(@"reg failed");
                             //login failed  do  nothing;
                         }
                         
                     } failure:^(NSURLSessionDataTask *operation,NSError *error){
                         //NSLog(@"%@",error);
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败,网络故障！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                        message:@"网络错误！"
+                                                                       delegate:self
+                                                              cancelButtonTitle:@"确定"
+                                                              otherButtonTitles:nil, nil];
                         [alert show];
                         //NSLog(@"reg failed");
                     }];
+                    
+                    
+                    
+                   
                     
                     
                 }
             }
         }
         else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入正确的11位手机号" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"请输入正确的11位手机号"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil, nil];
             [alert show];
         }
     }
@@ -390,6 +588,7 @@
     [textField resignFirstResponder];
     return YES;
 }
+
 - (UIView*)findFirstResponderBeneathView:(UIView*)view
 {
     // Search recursively for first responder
@@ -407,7 +606,7 @@
     [self.view endEditing:YES];
 }
 
-- (BOOL)validateMobile:(NSString *)mobileNum
+- (BOOL)validateMobile:(NSString *)mobileNum  //电话号码校验方法
 {
     /**
      * 手机号码

@@ -12,15 +12,15 @@
 #import "NSString+FontAwesome.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *usernameInput;
-@property (weak, nonatomic) IBOutlet UITextField *passwordInput;
-@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+@property (weak, nonatomic) IBOutlet UITextField *usernameInput;  //用户名输入框
+@property (weak, nonatomic) IBOutlet UITextField *passwordInput;  //密码输入框
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;  //登陆按钮
 //@property (weak, nonatomic) IBOutlet UIButton *forgetBtn;
-@property (weak, nonatomic) IBOutlet UIButton *registerBtn;
-@property (weak, nonatomic) IBOutlet UILabel *signupIconLabel;
-- (IBAction)backAction:(id)sender;
-- (IBAction)loginAction:(id)sender;
-- (IBAction)signupAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *registerBtn;  //注册按钮
+@property (weak, nonatomic) IBOutlet UILabel *signupIconLabel;  //
+- (IBAction)backAction:(id)sender;  //后退方法
+- (IBAction)loginAction:(id)sender;  //登陆方法
+- (IBAction)signupAction:(id)sender;  //
 
 @end
 
@@ -32,7 +32,7 @@
     //[_backButton setBackgroundImage:[UIImage new] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSString *username = [userDefault objectForKey:@"username"];
+    NSString *username = [userDefault objectForKey:@"username"];  //读取本地纪录填好用户名一栏
     _usernameInput.text = username;
     
     //[_loginBtn.layer setMasksToBounds:YES];
@@ -82,40 +82,40 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSString *username = [_usernameInput text];
     NSString *password = [_passwordInput text];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];  //参数数组列表
     params[@"user.email"]=username;
     params[@"user.password"]=password;
-    params[@"device"]=@"ios";
+    params[@"device"]=@"ios";  //设备为ios
     NSString *action = @"/new-shts/login.do";
-    NSString *loginUrl = [SERVER_URL stringByAppendingString:action];
+    NSString *loginUrl = [SERVER_URL stringByAppendingString:action];  //登陆地址
     //NSLog(@"%@",loginUrl);
    // NSDictionary *loginDict = @{@"user.email":@"8888",@"user.password":@"8888",@"device":@"ios"};
-    [manager POST:loginUrl parameters:params progress:^(NSProgress *progress){
+    [manager POST:loginUrl parameters:params progress:^(NSProgress *progress){  //开始连接服务器
     
-    } success:^(NSURLSessionDataTask *operation,id responseObject){
+    } success:^(NSURLSessionDataTask *operation,id responseObject){  //通信链接成功
         //NSLog(@"%@",responseObject);
         //NSLog(@"%@",[NSThread currentThread]);
       
         
-        NSString *result = [responseObject objectForKey:@"result"];
-        if([result isEqualToString:@"success"]){
+        NSString *result = [responseObject objectForKey:@"result"];  //获取返回结果
+        if([result isEqualToString:@"success"]){  //登陆成功
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             
             [userDefaults setObject:username forKey:@"username"];
             [userDefaults setObject:password forKey:@"password"];
-            [userDefaults synchronize];
-            [self performSegueWithIdentifier:@"LoginSuccess" sender:nil];
+            [userDefaults synchronize];  //将用户名以及密码都存储到本地
+            [self performSegueWithIdentifier:@"FamilyOne" sender:nil];  //跳转页面
             
         }
-        else if([result isEqualToString:@"success01"]){
+        else if([result isEqualToString:@"success01"]){  //登陆成功并且已经加入过计划
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             
             [userDefaults setObject:username forKey:@"username"];
             [userDefaults setObject:password forKey:@"password"];
-            [userDefaults synchronize];
+            [userDefaults synchronize];  //将用户名以及密码都存储到本地
             
             
-            [self performSegueWithIdentifier:@"HadJoin" sender:nil];
+            [self performSegueWithIdentifier:@"HadJoin" sender:nil];  //跳转页面
             
         }
         else{
@@ -140,7 +140,7 @@
     //[alert show];
 }
 
--(void)registerCompletion:(NSNotification*)notification{
+-(void)registerCompletion:(NSNotification*)notification{  //注册成功以后自动将用户名传过来填入输入框中
     NSDictionary *theData = [notification userInfo];
     NSString *username = [theData objectForKey:@"username"];
     _usernameInput.text = username;

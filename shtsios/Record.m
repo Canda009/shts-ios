@@ -9,7 +9,13 @@
 #import "Record.h"
 
 @implementation Record
--(id)initWithUser:(NSString *)user datestring:(NSString*)datestring startlatitude:(NSNumber *)startlatitude startlongitude:(NSNumber *)startlongitude recordstarttime:(NSDate *)starttime pointnum:(NSNumber *)pointnum stopnum:(NSNumber *)stopnum {
+-(id)initWithUser:(NSString *)user
+       datestring:(NSString*)datestring
+    startlatitude:(NSNumber *)startlatitude
+   startlongitude:(NSNumber *)startlongitude
+  recordstarttime:(NSDate *)starttime
+         pointnum:(NSNumber *)pointnum
+          stopnum:(NSNumber *)stopnum {
     
     self = [super init];
     

@@ -45,8 +45,8 @@
 }
 //@property (nonatomic, assign) id <SegueDelegate> delegate;
 - (IBAction)locationAction:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *gpsLabel;
-@property (weak, nonatomic) IBOutlet UIButton *locationLabel;
+@property (weak, nonatomic) IBOutlet UIButton *gpsLabel;//GPS信号强度指示标签
+@property (weak, nonatomic) IBOutlet UIButton *locationLabel;//指南针方位显示标签
 @end
 
 @implementation ViewController
@@ -55,14 +55,14 @@
     NSLog(@"ceshi");
 }
 
-- (void)initMapView{
+- (void)initMapView{  //初始化视图方法
     [AMapServices sharedServices].apiKey = IOS_KEY;
-    _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
-    _mapView.delegate = self;
-    _mapView.compassOrigin = CGPointMake(_mapView.compassOrigin.x, 22);
-    _mapView.scaleOrigin = CGPointMake(_mapView.scaleOrigin.x, 22);
+    _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];  //设置初始化框架的宽高分别为视图的宽高
+    _mapView.delegate = self;  //设置委托协议为自己
+    _mapView.compassOrigin = CGPointMake(_mapView.compassOrigin.x, 22);//罗盘原点的位置
+    _mapView.scaleOrigin = CGPointMake(_mapView.scaleOrigin.x, 22);//比例尺原点的位置
     
-    [self.view addSubview:_mapView];
+    [self.view addSubview:_mapView]; //添加子视图
    
     //_mapView.zoomLevel = 18.0;
     //NSLog(@"it's initMapView()");
@@ -75,21 +75,21 @@
     currentState=@"move";
     //NSLog(@"map viewload");
     // Do any additional setup after loading the view, typically from a nib.
-    [_gpsLabel.layer setMasksToBounds:YES];
-    //[_gpsLabel.layer setBorderWidth:1];
-    [_gpsLabel.layer setCornerRadius:5];
+    [_gpsLabel.layer setMasksToBounds:YES];  //设置gps标签位于所有图层之上而不被遮盖
+    //[_gpsLabel.layer setBorderWidth:1]; //显示按钮的边框
+    [_gpsLabel.layer setCornerRadius:5];  //设置按钮的圆角半径
     
     [_locationLabel.layer setMasksToBounds:YES];
     //[_gpsLabel.layer setBorderWidth:1];
     [_locationLabel.layer setCornerRadius:5];
     
-    [self initMapView];
+    [self initMapView];  //加载初始化视图方法
     _mapView.showsUserLocation = YES;
     _mapView.pausesLocationUpdatesAutomatically = NO;
     _mapView.allowsBackgroundLocationUpdates = YES;
     _mapView.distanceFilter = 35.0;
     _mapView.headingFilter = 90;
-    if(_mapView.userTrackingMode != MAUserTrackingModeFollow){
+    if(_mapView.userTrackingMode != MAUserTrackingModeFollow){  //设置定位用户位置的模式为追踪用户的location更新
         [_mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
     }
     //NSLog(@"it's viewDidLoad()");
@@ -99,11 +99,11 @@
     MAPointAnnotation *testAnnotation = [[MAPointAnnotation alloc] init];
     
     //testAnnotation.coordinate= CLLocationCoordinate2DMake(30.528687,114.338885);
-    testAnnotation.coordinate= CLLocationCoordinate2DMake(39.9557260000,116.3435570000);
+    testAnnotation.coordinate= CLLocationCoordinate2DMake(39.9557260000,116.3435570000);  //给定经纬度
 
     NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
     [dateformatter setDateFormat:@"MM-dd HH:mm:ss"];
-    NSDate *nowDate = [NSDate date];
+    NSDate *nowDate = [NSDate date];  //获取系统当前时间
     NSString* title = [dateformatter stringFromDate:nowDate];
     testAnnotation.title = title;
     testAnnotation.subtitle = @"停留";
@@ -115,6 +115,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+  //位置或者设备方向更新后调用此接口，更新用户位置信息
 -(void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation{
     if(updatingLocation){
         //NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
@@ -127,9 +129,9 @@
         NSString *bearing = [NSString stringWithFormat:@"%f",userLocation.location.course];
         NSString *state = @"move";
         NSString *altitude = [NSString stringWithFormat:@"%f",userLocation.location.altitude];
-        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];  //从本地数据取得用户名
         NSString *username = [userDefault objectForKey:@"username"];
-        
+        //当前位置纬度、经度、速度、精确度、方位、状态、海拔高度
        
        
         
@@ -141,13 +143,20 @@
         
         RecordDAO *recordDao = [RecordDAO sharedManager];
         if([recordDao findByDateString:dateStr]){
+            //首先根据日期查找是否有该日期对应的纪录，有则更新纪录，没有就创建一条新的纪录
             Record *record = [[Record alloc] init];
             record.datestring = dateStr;
             record.recordendtime = userLocation.location.timestamp;
             [recordDao modify:record];
         }
         else{
-         Record  *record = [[Record alloc] initWithUser:username datestring:dateStr startlatitude:[NSNumber numberWithDouble:userLocation.location.coordinate.latitude] startlongitude:[NSNumber numberWithDouble: userLocation.location.coordinate.longitude] recordstarttime:userLocation.location.timestamp pointnum:[NSNumber numberWithInt:1] stopnum:[NSNumber numberWithInt:1]];
+         Record  *record = [[Record alloc] initWithUser:username
+                                             datestring:dateStr
+                                          startlatitude:[NSNumber numberWithDouble:userLocation.location.coordinate.latitude]
+                                         startlongitude:[NSNumber numberWithDouble:userLocation.location.coordinate.longitude]
+                                        recordstarttime:userLocation.location.timestamp
+                                               pointnum:[NSNumber numberWithInt:1]
+                                                stopnum:[NSNumber numberWithInt:1]];
             [recordDao create:record];
         }
         
@@ -173,8 +182,9 @@
             //NSLog(@"time-%@",timeString);
             NSLog(@"%@,%@,%@,%@",myTrace.latitude,myTrace.longitude,myTrace.tracetime,timeString);
         }*/
+        
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];  //数据写进参数中上传至服务器
         params[@"userEmail"]=username;
         params[@"trace.currentLatitude"]=currentLatitude;
         params[@"trace.currentLogitude"]=currentLogitude;
@@ -221,7 +231,7 @@
         
         
         [_traceList addObject:userLocation.location];
-        if (userLocation.location.horizontalAccuracy <30.0) {
+        if (userLocation.location.horizontalAccuracy <30.0) {  //半径位置的不确定性小于30米时视为gps信号强，并反映在标签上
             _gpsLabel.titleLabel.text = @"GPS强";
             [_pointList addObject:userLocation.location];
         }
@@ -246,7 +256,10 @@
             UIColor *speedColor = [self getColorForSpeed:userLocation.location.speed];
             [_speedColors addObject:speedColor];
             [indexes addObject:@(pointNum)];
-            _polyline = [MAMultiPolyline polylineWithCoordinates:_runningCoords count:[_pointList count] drawStyleIndexes:indexes];
+            //定义一个由多个点相连的多段线，绘制时支持分段采用不同颜色绘制，用于绘制用户轨迹
+            _polyline = [MAMultiPolyline polylineWithCoordinates:_runningCoords
+                                                           count:[_pointList count]
+                                                drawStyleIndexes:indexes];
             [_mapView addOverlay:_polyline];
             
         }
@@ -293,14 +306,12 @@
                     }
                     
                 }else{
+                    
                 }
             }else{
-                
                 if (userLocation.location.speed>0.5) {
                     currentState = @"move";
                 }
-                
-                
             }
             
             
@@ -344,7 +355,16 @@
          
         }
         
-        Trace *trace = [[Trace alloc] initWithUser:username latitude:[NSNumber numberWithDouble:userLocation.location.coordinate.latitude] longitude:[NSNumber numberWithDouble:userLocation.location.coordinate.longitude] tracetime:userLocation.location.timestamp accuracy:[NSNumber numberWithDouble: userLocation.location.horizontalAccuracy] speed:[NSNumber numberWithDouble:userLocation.location.speed] altitude:[NSNumber numberWithDouble:userLocation.location.altitude] bearing:[NSNumber numberWithDouble:userLocation.location.course] state:currentState];
+        Trace *trace = [[Trace alloc] initWithUser:username
+                                          latitude:[NSNumber numberWithDouble:userLocation.location.coordinate.latitude]
+                                         longitude:[NSNumber numberWithDouble:userLocation.location.coordinate.longitude]
+                                         tracetime:userLocation.location.timestamp
+                                          accuracy:[NSNumber numberWithDouble:userLocation.location.horizontalAccuracy]
+                                             speed:[NSNumber numberWithDouble:userLocation.location.speed]
+                                          altitude:[NSNumber numberWithDouble:userLocation.location.altitude]
+                                           bearing:[NSNumber numberWithDouble:userLocation.location.course]
+                                             state:currentState];
+        
         TraceDAO *dao = [TraceDAO sharedManager];
         [dao create:trace];
         
@@ -372,6 +392,7 @@
     //NSLog(@"it's rendererForOverlay()");
     return nil;
 }
+
 -(UIColor *)getColorForSpeed:(float)speed{
     const float lowSpeedTh = 0.f;
     const float highSpeedTh = 10.5f;
@@ -380,6 +401,7 @@
     float hue = coldHue-(speed-lowSpeedTh)*(coldHue-warmHue)/(highSpeedTh-lowSpeedTh);
     return [UIColor colorWithHue:hue saturation:1.f brightness:1.f alpha:1.f];
 }
+
 -(void)initData{
     _pointList = [NSMutableArray array];
     _traceList = [NSMutableArray array];
@@ -444,10 +466,7 @@
     [self initData];
     //[_mapView addOverlay:_polyline];
     //NSLog(@"it's viewDidAppear()");
-    
-    
-    
-    
+
     NSArray *allAnno= [_mapView annotations];
     for (int i=0; i< [allAnno count]; i++) {
         
@@ -462,7 +481,7 @@
             StopPoint *myStop = all[0];
            
             CustomAnnotationView *anview = (CustomAnnotationView*)[_mapView viewForAnnotation:an];
-            NSString *str = [an.title stringByAppendingString:myStop.purpose];
+            //NSString *str = [an.title stringByAppendingString:myStop.purpose];
             anview.title=myStop.purpose;
         }
         
@@ -483,6 +502,7 @@
     pointAnnotation1.subtitle = @"test";
     [_mapView addAnnotation:pointAnnotation1];
     */
+    
     /*测试nsdate相减的秒数
     NSDate *beforeDate = [self getCustomDateWithHour:0];
     NSDate *currentDate = [self getCustomDateWithHour:1];
@@ -511,6 +531,7 @@
     }
     return  nil;
 }*/
+
 -(void)mapView:(MAMapView *)mapView annotationView:(MAAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
     send = view.annotation.title;
     NSLog(@"click info");
@@ -518,9 +539,10 @@
     
 
 }
+
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    if ([segue.identifier isEqualToString:@"SurveyView"]) {
+    if ([segue.identifier isEqualToString:@"SurveyView"]) {  //跳转到SurveyView界面
         // segue.destinationViewController：获取连线时所指的界面（VC）
         SurveyViewController *receive = segue.destinationViewController;
         receive.receive = send;

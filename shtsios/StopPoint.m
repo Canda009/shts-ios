@@ -9,7 +9,17 @@
 #import "StopPoint.h"
 
 @implementation StopPoint
--(id) initWithUser:(NSString *)user latitude:(NSNumber *)latitude longitude:(NSNumber *)longitude stoptime:(NSDate *)stoptime purpose:(NSString *)purpose vehicle:(NSString *)vehicle companytype:(NSString *)companytype companynum:(NSString*)companynum building:(NSString *)building isvalid:(NSString *)isvalid{
+-(id) initWithUser:(NSString *)user
+          latitude:(NSNumber *)latitude
+         longitude:(NSNumber *)longitude
+          stoptime:(NSDate *)stoptime
+           purpose:(NSString *)purpose
+           vehicle:(NSString *)vehicle
+       companytype:(NSString *)companytype
+        companynum:(NSString*)companynum
+          building:(NSString *)building
+           isvalid:(NSString *)isvalid{
+    
     self = [super init];
     
     if (self) {
